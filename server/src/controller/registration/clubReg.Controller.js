@@ -9,12 +9,12 @@ const handleClubReg = async (req, res) => {
             `INSERT INTO club_reg (user_id, club_id) VALUES (?, ?)`,
             [userId, clubId]
         );
-        response  ? res.sendStatus(200) : res.sendStatus(500);       
+        return response ? { message : 'Registered' } : { message : 'Failed' };
     } catch (error) {
         if (error.code === 'ER_DUP_ENTRY') {
-            return res.status(409).send('Already registered');
+            return { message : 'Already Registered' };
         }
-        return res.sendStatus(500);
+        return { message : 'Failed' };
     }
 }
 

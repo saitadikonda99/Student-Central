@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Axios from '../../api/Axios'
+import axios from 'axios'
 import { useLocation, useNavigate, Link} from 'react-router-dom'
 import useAuth from '../../hooks/UseAuth'
 import { ToastContainer, toast } from 'react-toastify';
@@ -8,7 +8,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Registration = () => {
     
-    const axios = Axios()
     const { auth, setAuth } = useAuth()
     const host = import.meta.env.VITE_HOST
     const from = location?.state?.from || "/";
@@ -39,17 +38,20 @@ const Registration = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post(`${host}/registration`, JSON.stringify(formData) );
 
-            if(response.data.status === 200) {
-                toast.success(response.data.message)
-                navigate('/auth/login', { replace: true })
-            }
+            const response = await axios.post(`${host}/registration`, JSON.stringify(formData), {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                withCredentials: true,
+            });
+
+            alert(response.data.message)
+
         } catch (error) {
-            alert('Something went wrong')
+            console.log(error)
         }
     }
-
 
     useEffect(() => {
         if(auth){

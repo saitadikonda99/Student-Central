@@ -4,7 +4,7 @@ const { handleRegister } = require('../../controller/registration/register.Contr
 
 
 router.post('/', async (req, res) => {
-    const response = await handleRegister(req, res)
+    const response = await handleRegister(req.body, res)
     res.send(response)
 });
 

@@ -16,7 +16,7 @@ const viewUserReg = async (req, res) => {
         return response[0];
 
     } catch (error) {
-        return res.sendStatus(500);
+        return { message : 'Failed' };
     }
 }
 

@@ -2,9 +2,8 @@ const { pool } = require('../../config/db');
 
 const handleRegister = async (req, res) => {
 
-    console.log(req.body);
+    console.log(req);
 
-    
     const {
         username,
         password,
@@ -14,7 +13,11 @@ const handleRegister = async (req, res) => {
         address,
         phone,
         profile_pic
-    } = req.body;
+    } = req;
+
+    if (!username || !password || !name || !branch || !year || !address || !phone || !profile_pic) {
+        return { message : 'Insufficient data' };
+    }
     
     try {
     
@@ -25,26 +28,31 @@ const handleRegister = async (req, res) => {
         
     const userId = response[0].insertId;
 
-    await pool.query(
+    const response2 = await pool.query(
         `INSERT INTO user_details (user_id, name, branch, year, address, phone, profile_pic) VALUES (?, ?, ?, ?, ?, ?, ?)`,
         [userId, name, branch, year, address, phone, profile_pic]
     );
 
-    response  ? res.sendStatus(200) : res.sendStatus(500);
+    return response && response2  ? { message : 'Registered' } : { message : 'Failed' };
     
     } catch (error) {
     
+        await pool.query(
+            `DELETE FROM users WHERE username = ?`,
+            [username]
+        );
+
         if (error.code === 'ER_DUP_ENTRY') {
-            return res.status(409).send('Username already exists');
+            return { message : 'Username already exists' };
         } 
         if (error.code === 'ER_TRUNCATED_WRONG_VALUE_FOR_FIELD') {
-            return res.status(400).send('Fill all the fields');
+            return { message : 'Wrong data type' };
         } 
         if (error.code === 'ER_TRUNCATED_WRONG_VALUE_FOR_FIELD') {
-            return res.status(400).send('Wrong data type');
+            return { message : 'Wrong data type' };
         }
 
-        return res.sendStatus(500);
+        return { message : 'Failed' };
     }
 }
 
