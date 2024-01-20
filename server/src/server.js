@@ -19,6 +19,12 @@ const Refresh = require('./routes/auth/refresh.Route')
 const Logout = require('./routes/auth/logout.Route')
 const Reset = require('./routes/auth/reset.Route')
 
+// Registration routes
+const Register = require('./routes/registration/register.Route')
+const ClubReg = require('./routes/registration/clubReg.Route')
+const viewUserReg = require('./routes/registration/viewUserReg.Route')
+
+
 // cors 
 app.use(cors(corsOptions))
 app.use(credentials)
@@ -38,6 +44,9 @@ app.use('/logout', Logout)
 app.use('/reset', Reset)
 
 // auth routes
+app.use('/registration', Register)
+app.use('/clubReg', ClubReg)
+app.use('/viewUserReg', viewUserReg)
 
 
 app.get('/', (req, res) => {
