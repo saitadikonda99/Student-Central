@@ -32,3 +32,24 @@ CREATE TABLE IF NOT EXISTS user_details (
     PRIMARY KEY (id),
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
+
+-- Create a table named club_reg
+CREATE TABLE IF NOT EXISTS club_reg (
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    user_id INT(11) NOT NULL UNIQUE,
+    club_id INT(11) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+-- Create a table named club
+CREATE TABLE IF NOT EXISTS club (
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    club_name VARCHAR(255) NOT NULL,
+    club_logo VARCHAR(255),
+    club_domain VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+);
+
