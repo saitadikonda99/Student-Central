@@ -2,6 +2,8 @@ const { pool } = require('../../config/db');
 
 const handleRegister = async (req, res) => {
 
+    console.log(req.body);
+
     
     const {
         username,

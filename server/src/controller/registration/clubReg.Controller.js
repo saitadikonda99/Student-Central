@@ -19,5 +19,5 @@ const handleClubReg = async (req, res) => {
 }
 
 module.exports = {
-    handleClubReg,
+    handleClubReg
 };

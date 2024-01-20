@@ -7,13 +7,27 @@ import Footer from './components/footer/page';
 
 import Home from './pages/home/page';
 
+
+import Login from './pages/auth/login/Login';
+import Register from './pages/registration/page';
+import PersistLogin from './components/auth/PersistLogin'
+
 function App() {
 
   return (
    <div className="App">
       <Nav/>
       <Routes>
-          <Route path='/' element={<Home/>}/>
+        
+
+            <Route element={<PersistLogin/>}>
+                {/* Require Auth */}
+                <Route path='/' element={<Home/>}/>
+                <Route path='/auth/login' element={<Login/>}/>
+                <Route path='/auth/register' element={<Register/>}/>
+            </Route>
+
+            
       </Routes>
       <Footer/>
    </div>
