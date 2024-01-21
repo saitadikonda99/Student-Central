@@ -52,6 +52,8 @@ const handleRegister = async (req, res) => {
             return { message : 'Wrong data type' };
         }
 
+        console.log(error);
+
         return { message : 'Failed' };
     }
 }

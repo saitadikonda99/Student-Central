@@ -27,7 +27,6 @@ const ViewReg = () => {
         <div className="ViewComponent">
             <div className="ViewComponent-in">
                 <h1>ViewReg</h1>
-                {/* {club_id: 1, club_name: "ZeroOne Code Club", club_logo: null, club_domain: "TEC"} */}
                 {
                     regData.map((reg) => {
                         return (

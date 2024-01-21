@@ -9,7 +9,7 @@ import Home from './pages/home/page';
 
 
 import Login from './pages/auth/login/Login';
-import Register from './pages/registration/page';
+import Register from './pages/auth/registration/page';
 import PersistLogin from './components/auth/PersistLogin'
 import ClubReg from './pages/club/Registration';
 import ViewReg from './pages/club/ViewReg';
@@ -18,7 +18,7 @@ function App() {
 
   return (
    <div className="App">
-      <Nav/>
+      {/* <Nav/> */}
       <Routes>
         
             <Route element={<PersistLogin/>}>
@@ -31,7 +31,6 @@ function App() {
             </Route>
 
         </Routes>
-      <Footer/>
    </div>
   )
 }
