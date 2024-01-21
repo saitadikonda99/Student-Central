@@ -32,6 +32,12 @@ function App() {
                     <Route path='/student/*' element={<StudentApp/>}/>  
                   </Route>
 
+                  <Route element={<RequiredAuth allowedRoles={['Admin']}/>}>
+                    <Route path='/admin/*' element={<Home/>}/>
+                  </Route>
+
+
+
                   <Route path='/' element={<Home/>}/>
                   <Route path='/auth/login' element={<Login/>}/>
                   <Route path='/auth/register' element={<Register/>}/>
