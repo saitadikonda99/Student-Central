@@ -81,6 +81,7 @@ const Registration = () => {
                                     placeholder="Username - University ID"
                                     onChange={handleInputChange}
                                     value={formData.username}
+                                    required
                                 />
                             </div>
                             <div className="register-card-in-one-one-two">
@@ -91,6 +92,7 @@ const Registration = () => {
                                     placeholder="Password"
                                     onChange={handleInputChange}
                                     value={formData.password}
+                                    required
                                 />
                             </div>
                         </div>
@@ -104,6 +106,7 @@ const Registration = () => {
                                     placeholder="Name"
                                     onChange={handleInputChange}
                                     value={formData.name}
+                                    required
                                 />
                             </div>
                             <div className="register-card-in-one-two-two">
@@ -112,6 +115,7 @@ const Registration = () => {
                                     name="branch"
                                     onChange={handleInputChange}
                                     value={formData.branch}
+                                    required
                                 >
                                     <option value="">Select Branch</option>
                                     <option value="CSE">CSE</option>
@@ -138,6 +142,7 @@ const Registration = () => {
                                     name="year"
                                     onChange={handleInputChange}
                                     value={formData.year}
+                                    required
                                 >
                                     <option value="">Select Year</option>
                                     <option value="1">1st</option>
@@ -149,6 +154,7 @@ const Registration = () => {
                                     name="address"
                                     onChange={handleInputChange}
                                     value={formData.address}
+                                    required
                                 >
                                     <option value="">Select Your State / Union Territory</option>
                                     <option value="Andhra Pradesh">Andhra Pradesh</option>
@@ -202,6 +208,7 @@ const Registration = () => {
                                     placeholder="Phone Number"
                                     onChange={handleInputChange}
                                     value={formData.phone}
+                                    required
                                 />
                             </div>
                             <div className="register-card-in-one-four-two">
