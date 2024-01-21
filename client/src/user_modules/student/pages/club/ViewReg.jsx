@@ -3,6 +3,8 @@ import Axios from '../../../../hooks/UseAxiosPrivate'
 import useAuth from '../../../../hooks/UseAuth'
 import Loader from '../../../../components/Loader/page'
 
+import './viewReg.css';
+
 const ViewReg = () => {
 
     const { auth } = useAuth()
@@ -30,22 +32,29 @@ const ViewReg = () => {
     },[])
 
   return (
-        <div className="ViewComponent">
-            {loading && <Loader />}
-            <div className="ViewComponent-in">
-                <h1>ViewReg</h1>
-                {
+        
+
+        <div className="viewregistration">
+            <div className="viewregistration-in">
+                <div className="viewregistration-in-header">
+                    <div className="viewregistration-in-header-in">
+                        <h1>View Registration</h1>
+                    </div>
+                </div>
+                <div className="viewregistration-in-one">
+                    <div className="viewregistration-in-one-in">
+                    {
+
                     regData.map((reg) => {
                         return (
                             <div key={reg.club_id} className="ViewComponent-in-reg" >
-                                <h1>{reg?.club_name}</h1>
-                                <h2>{reg?.id}</h2>
-                                <h3>{reg?.club_logo}</h3>
-                                <h3>{reg?.club_domain}</h3>
+                                <h1>You are registered to <span>{reg?.club_name} </span>under <span>{reg?.club_domain}</span> category </h1>
                             </div>
                         )
                     })
                 }
+                    </div>
+                </div>
             </div>
         </div>
   )
