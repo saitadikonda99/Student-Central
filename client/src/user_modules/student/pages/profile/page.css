@@ -1,0 +1,54 @@
+.profile-page {
+    width: 100%;
+}
+.profile-page-in {
+    margin: auto;
+    width: 100%;
+}
+.profile-page-in-header {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.profile-page-in-header h1 {
+    font-size: 2rem;
+}
+.profile-page-in-one {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.profile-page-in-one-in {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.profile-page-in-one-in table {
+    width: 100%;
+    
+
+}
+.profile-page-in-one-in-one {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+}
+.profile-page-in-one-in-one td {
+    background-color: white;
+    border-bottom: 1px solid grey;
+    padding: 0.5rem;
+    display: flex;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+.profile-page-in-one-in-one td strong {
+    width: 20%;
+}
+
+.profile-page-in-one-in-one td span {
+    width: 80%;
+}
