@@ -1,0 +1,27 @@
+.AdminComponent {
+    width: 100%;
+}
+
+.AdminComponent-in {
+    width: 100%;
+}
+
+.AdminComponent-one {
+    width: 100%;
+    height: 95vh;
+    display: flex;
+}
+
+.AdminComponent-one-one {
+    width: 20%;
+}
+
+.AdminComponent-one-two {
+    width: 80%;
+    background-color: rgb(255, 165, 0, 0.1);
+    height: 95vh;
+    overflow-y: scroll;
+    border: 3px solid lightgrey;
+    padding: 1.5rem;
+}
+

@@ -1,0 +1,28 @@
+.Admin-sidebar {
+    width: 100%;
+}
+.Admin-sidebar-in {
+    width: 100%;
+    border-right: 3px solid grey;
+}
+.Admin-sidebar-options {
+    width: 100%;
+}
+.Admin-sidebar-options {
+    width: 100%;
+}
+.Admin-sidebar-option {
+    width: 100%;
+}
+.Admin-sidebar-option-in {
+    width: 100%;
+}
+.Admin-sidebar-option-in-link {
+    display: block;
+    width: 100%;
+    background-color: black;
+    color: white;
+    border-bottom: 2px solid grey;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+}

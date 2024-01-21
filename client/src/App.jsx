@@ -15,6 +15,7 @@ import PersistLogin from './components/auth/PersistLogin'
 import ClubReg from './user_modules/student/pages/club/Registration';
 import ViewReg from './user_modules/student/pages/club/ViewReg';
 import StudentApp from './user_modules/student/studentApp';
+import AdminApp from './user_modules/admin/adminApp';
 import Layout from './components/auth/Layout';
 
 
@@ -33,7 +34,7 @@ function App() {
                   </Route>
 
                   <Route element={<RequiredAuth allowedRoles={['Admin']}/>}>
-                    <Route path='/admin/*' element={<Home/>}/>
+                    <Route path='/admin/*' element={<AdminApp/>}/>
                   </Route>
 
 

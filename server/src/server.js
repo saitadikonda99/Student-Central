@@ -24,7 +24,8 @@ const Register = require('./routes/registration/register.Route')
 const ClubReg = require('./routes/registration/clubReg.Route')
 const viewUserReg = require('./routes/registration/viewUserReg.Route')
 const getClubs = require('./routes/clubs/getClubs.Route')
-const viewProfile = require('./routes/profile/profile.Route')   
+const viewProfile = require('./routes/profile/profile.Route')
+const Admin = require('./routes/admin/admin.Route')   
 
 
 // cors 
@@ -51,6 +52,7 @@ app.use('/clubReg', ClubReg)
 app.use('/viewUserReg', viewUserReg)
 app.use('/getClubs', getClubs)
 app.use('/viewProfile', viewProfile)
+app.use('/admin', Admin)
 
 
 app.get('/', (req, res) => {

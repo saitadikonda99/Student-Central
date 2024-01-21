@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS club_reg (
 CREATE TABLE IF NOT EXISTS club (
     id INT(11) NOT NULL AUTO_INCREMENT,
     club_name VARCHAR(255) NOT NULL,
-    club_logo VARCHAR(255),
+    club_logo LONGTEXT NOT NULL, -- Change data type to LONGTEXT
     club_domain VARCHAR(255) NOT NULL,
     skillset_one VARCHAR(255) NOT NULL,
     skillset_two VARCHAR(255) NOT NULL,
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS club (
     skillset_four VARCHAR(255) NOT NULL,
     skillset_five VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
-    club_desc TEXT NOT NULL,
+    club_desc LONGTEXT NOT NULL, -- Change data type to LONGTEXT
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
