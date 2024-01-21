@@ -1,0 +1,104 @@
+.login {
+    width: 100%;
+}
+.login-in {
+    width: 90%;
+    margin: auto;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.login-card {
+    width: 70%;
+    margin: auto;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    padding: 1rem;
+    border-radius: 1rem;
+}
+.login-card-in {
+    width: 100%;
+    display: flex;
+}
+.login-card-in-one {
+    width: 50%;
+    background-color: rgb(255, 165, 0, 0.2);
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.login-card-in-one-header {
+    padding: 1rem 0rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.login-card-in-one-one {
+    width: 70%;
+}
+.login-card-in-one-one-in {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.login-card-in-one-one-one {
+    width: 100%;
+}
+.login-card-in-one-one-one input {
+    width: 100%;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    border: 1px solid lightgrey;
+    border-radius: 0.5rem;
+    outline: none;
+    font-size: 1rem;
+}
+
+.login-card-in-one-one-two {
+    width: 100%;
+}
+.login-card-in-one-one-two input {
+    width: 100%;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    border: 1px solid lightgrey;
+    border-radius: 0.5rem;
+    outline: none;
+    font-size: 1rem;
+}
+.login-card-in-one-one-three {
+    width: 100%;
+}
+.login-card-in-one-one-three button {
+    width: 100%;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    border: 1px solid lightgrey;
+    border-radius: 0.5rem;
+    outline: none;
+    font-size: 1rem;
+    background-color: black;
+    color: white;
+}
+.login-card-in-one-one-three-link {
+    text-decoration: none;
+    color: black;
+}
+
+
+.login-card-in-two {
+    width: 50%;
+}
+.login-card-in-two-in {
+    width: 100%;
+}
+.login-card-in-two img {
+    width: 100%;
+}

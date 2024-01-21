@@ -9,14 +9,14 @@ import Home from './pages/home/page';
 
 
 import Login from './pages/auth/login/Login';
-import Register from './pages/registration/page';
+import Register from './pages/auth/registration/page';
 import PersistLogin from './components/auth/PersistLogin'
 
 function App() {
 
   return (
    <div className="App">
-      <Nav/>
+      {/* <Nav/> */}
       <Routes>
         
 
@@ -29,7 +29,7 @@ function App() {
 
             
       </Routes>
-      <Footer/>
+      {/* <Footer/> */}
    </div>
   )
 }
