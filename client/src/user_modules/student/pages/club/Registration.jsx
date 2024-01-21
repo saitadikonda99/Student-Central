@@ -4,6 +4,7 @@ import { useLocation, useNavigate, Link} from 'react-router-dom'
 import useAuth from '../../../../hooks/UseAuth'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Loader from '../../../../components/Loader/page'
 
 
 const Registration = () => {
@@ -19,23 +20,34 @@ const Registration = () => {
 
 
     const [clubData, setClubData] = useState([])
+    const [loader, setLoader] = useState(false)
 
     // fetch the club details 
     useEffect(() => {
         const fetchClub = async () => {
             try {
+                setLoader(true)
                 const response = await axios.get(`${host}/getClubs`);
                 
                 setClubData(response.data)
             } catch (error) {
                 console.log(error)    
+            } finally {
+                setLoader(false)
             }
         }
         fetchClub()
     }, [])
 
+    const handleClubRegCheck =  (clubId) => {
+        window.confirm("Are you sure you want to join this club?") && handleClubReg(clubId)
+    }
+
     const handleClubReg = async (clubId) => {
         try {
+
+            setLoader(true)
+
             const response = await axios.post(`${host}/clubReg`, JSON.stringify({userId, clubId}), {
                 headers: {
                     'Content-Type': 'application/json',
@@ -43,15 +55,26 @@ const Registration = () => {
                 withCredentials: true,
             });
 
-            toast.success(response.data.message)
+            if(response.data?.message === 'Already Registered to a Club') {
+                toast.warn('Already Registered to a Club')
+            }
+
+            if(response.data?.message === 'Registered Successfully') {
+                toast.success('Registered Successfully')
+                navigate('/student/club/viewReg')
+            }
+
 
         } catch (error) {
             console.log(error)
+        } finally {
+            setLoader(false)
         }
     }
 
     return (
         <div className="ClubComponent">
+            {loader && <Loader />}
             <div className="ClubComponent-in">
                 {   
                     clubData.map((club) => {
@@ -61,7 +84,7 @@ const Registration = () => {
                                 <h2>{club?.id}</h2>
                                 <h3>{club?.club_logo}</h3>
                                 <h3>{club?.club_domain}</h3>
-                                <button onClick={ () => handleClubReg(club.id)} >Join</button>
+                                <button onClick={ () => handleClubRegCheck(club.id)} >Join</button>
                                 <ToastContainer />
                             </div>
                         )

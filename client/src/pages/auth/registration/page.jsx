@@ -54,7 +54,7 @@ const Registration = () => {
 
             if(response.data.message === `You're Successfully Registered`) {
                 toast.success(response.data.message)
-                return 
+                return
             }
 
             toast.error(response.data.message)

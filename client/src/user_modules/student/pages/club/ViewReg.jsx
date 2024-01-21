@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Axios from '../../../../hooks/UseAxiosPrivate'
 import useAuth from '../../../../hooks/UseAuth'
+import Loader from '../../../../components/Loader/page'
 
 const ViewReg = () => {
 
@@ -10,14 +11,19 @@ const ViewReg = () => {
 
     const [regData, setRegData] = useState([])
 
+    const [loading, setLoading] = useState(false);
+
     // fetch the club details
     useEffect(() => {
         const fetchReg = async () => {
             try {
+                setLoading(true)
                 const response = await axios.get(`${host}/viewUserReg/${auth?.id}`);
                 setRegData(response.data)
             } catch (error) {
                 console.log(error)
+            } finally {
+                setLoading(false)
             }
         }
         fetchReg()
@@ -25,6 +31,7 @@ const ViewReg = () => {
 
   return (
         <div className="ViewComponent">
+            {loading && <Loader />}
             <div className="ViewComponent-in">
                 <h1>ViewReg</h1>
                 {

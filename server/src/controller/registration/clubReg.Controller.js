@@ -9,7 +9,7 @@ const handleClubReg = async (req, res) => {
             `INSERT INTO club_reg (user_id, club_id) VALUES (?, ?)`,
             [userId, clubId]
         );
-        return response ? { message : 'Registered' } : { message : 'Failed' };
+        return response ? { message : 'Registered Successfully' } : { message : 'Failed' };
     } catch (error) {
         if (error.code === 'ER_DUP_ENTRY') {
             return { message : 'Already Registered to a Club' };

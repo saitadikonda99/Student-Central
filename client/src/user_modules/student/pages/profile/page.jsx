@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axiosPrivate from '../../../../hooks/UseAxiosPrivate';
 import useAuth from '../../../../hooks/UseAuth';
+import Loader from '../../../../components/Loader/page';
 
 import './page.css';
 
@@ -11,14 +12,18 @@ const Profile = () => {
     const host = import.meta.env.VITE_HOST;
 
     const [profileData, setProfileData] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const fetchProfile = async () => {
             try {
+                setLoading(true);
                 const response = await axios.get(`${host}/viewProfile/${userId}`);
                 setProfileData(response.data);
             } catch (error) {
                 console.log(error);
+            } finally {
+                setLoading(false);
             }
         };
         fetchProfile();
@@ -26,6 +31,7 @@ const Profile = () => {
 
     return (
         <div className="profile-page">
+            {loading && <Loader />}
             <div className="profile-page-in">
                 <div className="profile-page-in-header">
                     <h1>Student Profile</h1>
