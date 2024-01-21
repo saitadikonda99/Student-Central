@@ -5,7 +5,7 @@ const viewUserReg = async (userId) => {
     try {
         const response = await pool.query(
             `
-            SELECT club.id AS club_id, club.club_name, club.club_logo, club.club_domain
+            SELECT club.id AS club_id, club.club_name, club.club_logo, club.club_domain, club_reg.why, club.club_desc, club_reg.preknowledge
             FROM club_reg
             JOIN club ON club_reg.club_id = club.id
             WHERE club_reg.user_id = ?`

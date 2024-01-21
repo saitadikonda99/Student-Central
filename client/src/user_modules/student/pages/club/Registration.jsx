@@ -120,33 +120,24 @@ const Registration = () => {
 
 const ClubCard = ({ club, handleClubRegCheck }) => {
     return (
-        <div className="clubregistration-two">
-            <div className="ClubCard-in">
-                <div className="ClubCard-img">
-                    <div className="ClubCard-img-in">
-                        <img src={club?.club_logo} alt={club?.club_name} className="ClubCard-logo" />
+       <div className="clubregistration-two">
+        <div className="clubregistration-two-in">
+            <div className="clubregistration-two-in-card">
+                <div className="clubregistration-two-in-card-in">
+                    <div className="clubregistration-two-in-card-in-img">
+                        <img src={club.club_logo} alt="club-logo" />
                     </div>
-                </div>
-                <div className="ClubCard-details">
-                    <div className="Cd-one">
-                        <div className="Cd-one-in">
-                            <h1>{club?.club_name}</h1>
-                        </div>
+                    <div className="clubregistration-two-in-card-in-text">
+                        <h1>{club.club_name}</h1>
+                        <p>{club.club_description}</p>
                     </div>
-                    <div className="Cd-two">
-                        <div className="Cd-two-in">
-                            <p>{club?.club_domain}</p>
-                        </div>
-                    </div>
-                    <div className="Cd-three">
-                        <div className="Cd-three-in">
-                            <button onClick={() => handleClubRegCheck(club.id)}>Join</button>
-                            <ToastContainer />
-                        </div>
+                    <div className="clubregistration-two-in-card-in-btn">
+                        <button onClick={() => handleClubRegCheck(club.id)}>Join</button>
                     </div>
                 </div>
             </div>
         </div>
+       </div>
     );
 };
 

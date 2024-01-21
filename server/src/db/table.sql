@@ -49,6 +49,14 @@ CREATE TABLE IF NOT EXISTS club (
     club_name VARCHAR(255) NOT NULL,
     club_logo VARCHAR(255),
     club_domain VARCHAR(255) NOT NULL,
+    skillset_one VARCHAR(255) NOT NULL,
+    skillset_two VARCHAR(255) NOT NULL,
+    skillset_three VARCHAR(255) NOT NULL,
+    skillset_four VARCHAR(255) NOT NULL,
+    skillset_five VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    club_desc TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
+
