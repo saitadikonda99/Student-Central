@@ -1,79 +1,82 @@
-import React, { useEffect, useState } from 'react'
-import Axios from '../../../../hooks/UseAxiosPrivate'
-import { useLocation, useNavigate, Link} from 'react-router-dom'
-import useAuth from '../../../../hooks/UseAuth'
+import React, { useEffect, useState } from 'react';
+import Axios from '../../../../hooks/UseAxiosPrivate';
+import { useLocation, useNavigate } from 'react-router-dom';
+import useAuth from '../../../../hooks/UseAuth';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Loader from '../../../../components/Loader/page'
+import Loader from '../../../../components/Loader/page';
 
 import './Registration.css';
 
 const Registration = () => {
-    
-    const { auth, setAuth } = useAuth()
-    console.log('auth:', auth)
-    const host = import.meta.env.VITE_HOST
+    const { auth, setAuth } = useAuth();
+    const host = import.meta.env.VITE_HOST;
     const from = location?.state?.from || "/";
-    const axios = Axios()
-    const navigate = useNavigate()
+    const axios = Axios();
+    const navigate = useNavigate();
+    const userId = auth?.id;
 
-    const userId = auth?.id
+    const [clubData, setClubData] = useState([]);
+    const [loader, setLoader] = useState(false);
 
-
-    const [clubData, setClubData] = useState([])
-    const [loader, setLoader] = useState(false)
-
-    // fetch the club details 
     useEffect(() => {
         const fetchClub = async () => {
             try {
-                setLoader(true)
+                setLoader(true);
                 const response = await axios.get(`${host}/getClubs`);
-                
-                setClubData(response.data)
+                setClubData(response.data);
             } catch (error) {
-                console.log(error)    
+                console.log(error);
             } finally {
-                setLoader(false)
+                setLoader(false);
             }
-        }
-        fetchClub()
-    }, [])
+        };
+        fetchClub();
+    }, []);
 
-    const handleClubRegCheck =  (clubId) => {
-        window.confirm("Are you sure you want to join this club?") && handleClubReg(clubId)
-    }
+    const handleClubRegCheck = (clubId) => {
+        window.confirm("Are you sure you want to join this club?") && handleClubReg(clubId);
 
-    const handleClubReg = async (clubId) => {
+    };
+
+    const handleClubReg = async (clubId, formData) => {
         try {
 
-            console.log('clubId:', clubId)
-            setLoader(true)
-
-            const response = await axios.post(`${host}/clubReg`, JSON.stringify({userId, clubId}), {
-                headers: {
-                    'Content-Type': 'application/json',
+            setLoader(true);
+    
+            // Update the request format to match your server's expectations
+            console.log('Form Data:', formData);
+            const response = await axios.post(
+                `${host}/clubReg`,
+                {
+                    userId,
+                    clubId,
+                    why: formData?.why || '',
+                    resume_link: formData?.resumeLink || '',
+                    preknowledge: formData?.preknowledge || '',
                 },
-                withCredentials: true,
-            });
+                {
+                    withCredentials: true,
+                }
+            );
+            
 
-            if(response.data?.message == 'Already Registered to a Club') {
-                toast.warn('Already Registered to a Club')
+            if (response.data?.message === 'Already Registered to a Club') {
+                toast.warn('Already Registered to a Club');
             }
-
-            if(response.data?.message === 'Registered Successfully') {
-                toast.success('Registered Successfully')
-                navigate('/student/club/viewReg')
+    
+            if (response.data?.message === 'Registered Successfully') {
+                toast.success('Registered Successfully');
+                navigate('/student/club/viewReg');
             }
-
-            console.log('response:', response.data.message)  
-
+    
+            console.log('response:', response.data.message);
         } catch (error) {
-            console.log(error)
+            console.log(error);
         } finally {
-            setLoader(false)
+            setLoader(false);
         }
-    }
+    };
 
     const [selectedDomain, setSelectedDomain] = useState(null);
 
@@ -109,36 +112,139 @@ const Registration = () => {
                 </div>
                 <div className="ClubList">
                     {filteredClubData.map((club) => (
-                        <ClubCard key={club.id} club={club} handleClubRegCheck={handleClubRegCheck} />
+                        <ClubCard
+                            key={club.id}
+                            club={club}
+                            handleClubRegCheck={handleClubRegCheck}
+                        />
                     ))}
                 </div>
             </div>
         </div>
-    )
-
-};
-
-const ClubCard = ({ club, handleClubRegCheck }) => {
-    return (
-       <div className="clubregistration-two">
-        <div className="clubregistration-two-in">
-            <div className="clubregistration-two-in-card">
-                <div className="clubregistration-two-in-card-in">
-                    <div className="clubregistration-two-in-card-in-img">
-                        <img src={club.club_logo} alt="club-logo" />
-                    </div>
-                    <div className="clubregistration-two-in-card-in-text">
-                        <h1>{club.club_name}</h1>
-                        <p>{club.club_description}</p>
-                    </div>
-                    <div className="clubregistration-two-in-card-in-btn">
-                        <button onClick={() => handleClubRegCheck(club.id)}>Join</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-       </div>
     );
 };
 
-export default Registration
+const ClubCard = ({ club, handleClubRegCheck }) => {
+    const [isFormVisible, setIsFormVisible] = useState(false);
+    const [formData, setFormData] = useState({
+        why: '',
+        resumeLink: '',
+        preknowledge: '',
+    });
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            [name]: value,
+        }));
+    };
+
+    const handleRegisterClick = () => {
+        setIsFormVisible(true);
+    };
+
+    const handleCancelClick = () => {
+        setIsFormVisible(false);
+        setFormData({
+            why: '',
+            resumeLink: '',
+            preknowledge: '',
+        });
+    };
+
+    const handleConfirmClick = () => {
+        console.log('Form Data:', formData);
+        if (formData.why && formData.resumeLink && formData.preknowledge) {
+            handleClubRegCheck(club.id, formData);
+            setIsFormVisible(false);
+            setFormData({
+                why: '',
+                resumeLink: '',
+                preknowledge: '',
+            });
+        } else {
+            toast.error('Please fill out all fields.');
+        }
+    };
+
+    return (
+        <div className="clubregistration-two">
+            <div className="clubregistration-two-in">
+                <div className="clubregistration-two-in-card">
+                    <div className="clubregistration-two-in-card-one">
+                        <div className="clubregistration-two-in-card-one-in">
+                            <img src={club.club_logo} alt="image of club" />
+                        </div>
+                    </div>
+                    <div className="clubregistration-two-in-card-two">
+                        <div className="clubregistration-two-in-card-two-in">
+                            <div className="clubregistration-two-in-card-two-in-one">
+                                <p>{club.club_domain}</p>
+                                <h1>{club.club_name}</h1>
+                                <p>{club.club_desc}</p>
+                            </div>
+                            <div className="clubregistration-two-in-card-two-in-two">
+                                <div className="clubregistration-two-in-card-two-in-two-in">
+                                    <p>{club.skillset_one}</p>
+                                    <p>{club.skillset_two}</p>
+                                    <p>{club.skillset_three}</p>
+                                    <p>{club.skillset_four}</p>
+                                    <p>{club.skillset_five}</p>
+                                </div>
+                            </div>
+                            <div className="clubregistration-two-in-card-two-in-three">
+                                <div className="clubregistration-two-in-card-two-in-three-in">
+                                    <p>Email: <span>{club.email}</span></p>
+                                </div>
+                            </div>
+                            <div className="clubregistration-two-in-card-two-in-four">
+                                <div className="clubregistration-two-in-card-two-in-four-in">
+                                    <button onClick={handleRegisterClick}>Register</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {isFormVisible && (
+                <div className="clubregistration-popup">
+                    <div className="clubregistration-popup-content">
+                        <h2>Registration Form</h2>
+                        <label htmlFor="why">Why do you want to join?</label>
+                        <input
+                            type="text"
+                            id="why"
+                            name="why"
+                            value={formData.why}
+                            onChange={handleInputChange}
+                        />
+                        <label htmlFor="resumeLink">Resume Link</label>
+                        <input
+                            type="text"
+                            id="resumeLink"
+                            name="resumeLink"
+                            value={formData.resumeLink}
+                            onChange={handleInputChange}
+                        />
+                        <label htmlFor="preknowledge">Preknowledge</label>
+                        <input
+                            type="text"
+                            id="preknowledge"
+                            name="preknowledge"
+                            value={formData.preknowledge}
+                            onChange={handleInputChange}
+                        />
+                        <div className="clubregistration-popup-buttons">
+                            <button onClick={handleCancelClick}>Cancel</button>
+                            <button onClick={handleConfirmClick}>Confirm</button>
+                        </div>
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+};
+
+export default Registration;
