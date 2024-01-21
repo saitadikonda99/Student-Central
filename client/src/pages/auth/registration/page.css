@@ -141,10 +141,23 @@
     border: 1px solid lightgrey;
 }
 .register-card-in-one-three-two {
-    width: 70%;
+    width: 30%;
 }
 .register-card-in-one-three-two-input {
     width: 95%;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    outline: none;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid lightgrey;
+}
+.register-card-in-one-three-three {
+    width: 40%;
+}
+.register-card-in-one-three-three-input {
+    width: 90%;
     padding: 0.5rem;
     border: none;
     border-radius: 0.5rem;
@@ -186,10 +199,40 @@
     margin-bottom: 1rem;
     border: 1px solid lightgrey;
 }
-/* <div className="register-card-in-one-five">
-                            <button className='register-card-in-one-five-button' onClick={handleSubmit}>Register</button>
-                            <Link className='register-card-in-one-five-link' to='/auth/login' >Already registered?</Link>
-                        </div> */
+
+.register-card-in-one-six {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+}
+.register-card-in-one-six-one {
+    width: 50%;
+}
+.register-card-in-one-six-one-input {
+    width: 95%;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    outline: none;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid lightgrey;
+}
+.register-card-in-one-six-two {
+    width: 50%;
+}
+.register-card-in-one-six-two-input {
+    width: 90%;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    outline: none;
+    font-size: 1rem;
+    margin-bottom: 1rem; 
+    border: 1px solid lightgrey;
+}
+
 .register-card-in-one-five {
     display: flex;
     justify-content: flex-start;
