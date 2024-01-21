@@ -44,10 +44,13 @@ const Profile = () => {
                                     <tr className='profile-page-in-one-in-one' key={profile.id}>
                                         <td><strong>Username:</strong> <span>{profile.username}</span></td>
                                         <td><strong>Name:</strong> <span>{profile.name}</span></td>
+                                        <td><strong>Gender:</strong> <span>{profile.gender}</span></td>
                                         <td><strong>Branch:</strong> <span>{profile.branch}</span></td>
                                         <td><strong>Year:</strong> <span>{profile.year}</span></td>
+                                        <td><strong>Email:</strong> <span>{profile.email}</span></td>
                                         <td><strong>Address:</strong> <span>{profile.address}</span></td>
                                         <td><strong>Phone:</strong> <span>{profile.phone}</span></td>
+                                        <td><strong>Residence Type:</strong> <span>{profile.residence}</span></td>
                                         <td><strong>Profile Pic:</strong> <span>{profile.profile_pic}</span></td>
                                     </tr>
                                 ))}
