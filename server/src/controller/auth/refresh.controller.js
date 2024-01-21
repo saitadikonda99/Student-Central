@@ -19,7 +19,7 @@ const refreshTokenHandler = async (refreshToken, res) => {
         jwt.sign(
             { username: decodedToken.username, id: decodedToken.id, role: decodedToken.role }, // Include any necessary properties
             process.env.ACCESS_TOKEN_SECRET,
-            { expiresIn: '10m' },
+            { expiresIn: '30s' },
             (err, accessToken) => {
                 if (err) {
                     console.error('Error signing access token:', err);

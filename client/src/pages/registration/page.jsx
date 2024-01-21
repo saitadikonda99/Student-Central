@@ -69,17 +69,7 @@ const Registration = () => {
                 </div>
                 <div className="Reg-two">
                     <div className="Reg-two-in">
-                    {/* {
-                        "username": "220030805",
-                        "password": "yourPasswordValue",
-                        "name": "John Doe",
-                        "branch": "Computer Science",
-                        "year": "2024",
-                        "address": "123 Main Street",
-                        "phone": "123-456-7890",
-                        "profile_pic": "url/to/profile_pic.jpg"
-                    } */}
-                    
+                     
                     <input 
                         type="text"
                         name="username"

@@ -1,7 +1,6 @@
 const { pool } = require('../../config/db');
 
-const viewUserReg = async (req, res) => {
-    const { userId } = req.body;
+const viewUserReg = async (userId) => {
 
     try {
         const response = await pool.query(
@@ -13,7 +12,7 @@ const viewUserReg = async (req, res) => {
             , [userId],  
         );
             
-        return response[0];
+        return response.length > 0 ? response[0] : {error: "No data found"};
 
     } catch (error) {
         return { message : 'Failed' };

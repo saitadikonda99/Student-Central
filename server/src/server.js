@@ -23,6 +23,7 @@ const Reset = require('./routes/auth/reset.Route')
 const Register = require('./routes/registration/register.Route')
 const ClubReg = require('./routes/registration/clubReg.Route')
 const viewUserReg = require('./routes/registration/viewUserReg.Route')
+const getClubs = require('./routes/clubs/getClubs.Route')
 
 
 // cors 
@@ -47,6 +48,7 @@ app.use('/reset', Reset)
 app.use('/registration', Register)
 app.use('/clubReg', ClubReg)
 app.use('/viewUserReg', viewUserReg)
+app.use('/getClubs', getClubs)
 
 
 app.get('/', (req, res) => {
