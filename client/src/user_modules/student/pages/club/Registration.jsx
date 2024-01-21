@@ -5,7 +5,7 @@ import useAuth from '../../../../hooks/UseAuth'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loader from '../../../../components/Loader/page'
-
+import './Registration.css';
 
 const Registration = () => {
     
@@ -46,6 +46,7 @@ const Registration = () => {
     const handleClubReg = async (clubId) => {
         try {
 
+            console.log('clubId:', clubId)
             setLoader(true)
 
             const response = await axios.post(`${host}/clubReg`, JSON.stringify({userId, clubId}), {
@@ -55,7 +56,7 @@ const Registration = () => {
                 withCredentials: true,
             });
 
-            if(response.data?.message === 'Already Registered to a Club') {
+            if(response.data?.message == 'Already Registered to a Club') {
                 toast.warn('Already Registered to a Club')
             }
 
@@ -64,6 +65,7 @@ const Registration = () => {
                 navigate('/student/club/viewReg')
             }
 
+            console.log('response:', response.data.message)  
 
         } catch (error) {
             console.log(error)
@@ -72,28 +74,70 @@ const Registration = () => {
         }
     }
 
+    const [selectedDomain, setSelectedDomain] = useState(null);
+
+    const filteredClubData = selectedDomain
+        ? clubData.filter((club) => club.club_domain === selectedDomain)
+        : clubData;
+
+    const handleDomainClick = (domain) => {
+        setSelectedDomain(domain);
+    };
+
     return (
         <div className="ClubComponent">
             {loader && <Loader />}
             <div className="ClubComponent-in">
-                {   
-                    clubData.map((club) => {
-                        return (
-                            <div key={club.id} className="ClubComponent-in-club" >
-                                <h1>{club?.club_name}</h1>
-                                <h2>{club?.id}</h2>
-                                <h3>{club?.club_logo}</h3>
-                                <h3>{club?.club_domain}</h3>
-                                <button onClick={ () => handleClubRegCheck(club.id)} >Join</button>
-                                <ToastContainer />
-                            </div>
-                        )
-                    })
-                }
+                <div className="ClubComponent-in-Topbar">
+                    <div className="ClubComponent-in-Topbar-in">
+                        <button onClick={() => handleDomainClick(null)}>All</button>
+                        <button onClick={() => handleDomainClick('TEC')}>TEC</button>
+                        <button onClick={() => handleDomainClick('Apple')}>Apple</button>
+                        <button onClick={() => handleDomainClick('A2')}>A2</button>
+                        <button onClick={() => handleDomainClick('A3')}>A3</button>
+                    </div>
+                </div>
+                <div className="ClubList">
+                    {filteredClubData.map((club) => (
+                        <ClubCard key={club.id} club={club} handleClubRegCheck={handleClubRegCheck} />
+                    ))}
+                </div>
             </div>
         </div>
     )
 
+};
+
+const ClubCard = ({ club, handleClubRegCheck }) => {
+    return (
+        <div className="ClubCard">
+            <div className="ClubCard-in">
+                <div className="ClubCard-img">
+                    <div className="ClubCard-img-in">
+                        <img src={club?.club_logo} alt={club?.club_name} className="ClubCard-logo" />
+                    </div>
+                </div>
+                <div className="ClubCard-details">
+                    <div className="Cd-one">
+                        <div className="Cd-one-in">
+                            <h1>{club?.club_name}</h1>
+                        </div>
+                    </div>
+                    <div className="Cd-two">
+                        <div className="Cd-two-in">
+                            <p>{club?.club_domain}</p>
+                        </div>
+                    </div>
+                    <div className="Cd-three">
+                        <div className="Cd-three-in">
+                            <button onClick={() => handleClubRegCheck(club.id)}>Join</button>
+                            <ToastContainer />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
 };
 
 export default Registration

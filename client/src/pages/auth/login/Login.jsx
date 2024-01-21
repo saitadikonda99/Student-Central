@@ -65,19 +65,24 @@ function Login() {
                 user,
             });
 
-             if(auth.role.includes('Student')) {
-                navigate('/student', { replace: true });
-             }
-            if(auth.role.includes('Admin')) {
-                navigate('/admin', { replace: true });
-            }
-
         } catch (error) { 
             toast.error('Login Failed')
         } finally {
             setLoading(false);
         }
     };
+
+    useEffect(() => {
+        if (auth) {
+            setTimeout(() => {
+                if (auth.role.includes('Student')) {
+                    navigate('/student', { replace: true });
+                } else if (auth.role.includes('Admin')) {
+                    navigate('/admin', { replace: true });
+                }
+            }, 0);
+        }
+    }, [auth, navigate]);
 
     
     useEffect(() => {
