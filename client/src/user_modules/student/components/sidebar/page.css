@@ -1,0 +1,28 @@
+.sidebar {
+    width: 100%;
+}
+.sidebar-in {
+    width: 100%;
+    border-right: 3px solid grey;
+}
+.sidebar-options {
+    width: 100%;
+}
+.sidebar-options {
+    width: 100%;
+}
+.sidebar-option {
+    width: 100%;
+}
+.sidebar-option-in {
+    width: 100%;
+}
+.sidebar-option-in-link {
+    display: block;
+    width: 100%;
+    background-color: black;
+    color: white;
+    border-bottom: 2px solid grey;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+}

@@ -62,7 +62,14 @@ function Login() {
                 user,
             });
 
-            navigate(from, { replace: true });
+             console.log('auth:', auth);
+
+             if(auth.role.includes('Student')) {
+                navigate('/student', { replace: true });
+             }
+            if(auth.role.includes('Admin')) {
+                navigate('/admin', { replace: true });
+            }
 
         } catch (error) { 
             setError(error?.message);

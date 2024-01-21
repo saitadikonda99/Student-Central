@@ -12,7 +12,7 @@ const useLogout = () => {
             const response = await axiosPrivate.get('/logout');
     
                 console.log(response.status);
-                window.location.href = '/login';
+                window.location.href = '/auth/login';
    
     } catch (error) {
         alert('login first')
