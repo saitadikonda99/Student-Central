@@ -16,20 +16,6 @@ const Registration = () => {
     const from = location?.state?.from || "/";
     const navigate = useNavigate()
 
-    // id INT(11) NOT NULL AUTO_INCREMENT,
-    // user_id INT(11) NOT NULL,
-    // name VARCHAR(255) NOT NULL,
-    // gender VARCHAR(255) NOT NULL,
-    // branch VARCHAR(255) NOT NULL,
-    // year INT NOT NULL,
-    // email VARCHAR(255) NOT NULL,
-    // address VARCHAR(255) NOT NULL,
-    // residence VARCHAR(255) NOT NULL,
-    // phone VARCHAR(255) NOT NULL,
-    // profile_pic VARCHAR(255) NOT NULL,
-    // created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    // PRIMARY KEY (id),
-    // FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 
     const [formData, setFormData] = useState({
         username: '',
@@ -55,6 +41,7 @@ const Registration = () => {
             ...formData,
             [name]: value,
         });
+        console.log(formData)
     };
 
     const handleSubmit = async (e) => {
@@ -143,8 +130,8 @@ const Registration = () => {
                             <div className="register-card-in-one-two-two">
                                 <input 
                                 className='register-card-in-one-two-two-input'
-                                type="email"
-                                name="Email"
+                                type="text"
+                                name="email"
                                 placeholder='Email'
                                 onChange={handleInputChange}
                                 value={formData.email}
@@ -164,6 +151,7 @@ const Registration = () => {
                                     required
                                 >
 
+                                    <option value="">Select Gender</option>
                                     <option value="Female">Female</option>
                                     <option value="Male">Male</option>
 
@@ -177,7 +165,9 @@ const Registration = () => {
                                         value={formData.year}
                                         required
                                     >
-                                        <option value="1">1 (Freshmen Engineering) </option>
+                                        <option value="">Select Year</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
 
                                     </select>
                             </div>
@@ -189,6 +179,7 @@ const Registration = () => {
                                         value={formData.branch}
                                         required
                                     >
+                                        <option value="">Select Branch</option>
                                         <option value="CSE">CSE</option>
                                         <option value="ECE">ECE</option>
                                         <option value="ME">ME</option>
@@ -232,7 +223,7 @@ const Registration = () => {
                                         value={formData.address}
                                         required
                                     >
-                                        <option value="">Select Your State / Union Territory</option>
+                                    <option value="">Select Your State / Union Territory</option>
                                     <option value="Andhra Pradesh">Andhra Pradesh</option>
                                     <option value="Arunachal Pradesh">Arunachal Pradesh</option>
                                     <option value="Assam">Assam</option>
@@ -279,9 +270,11 @@ const Registration = () => {
                                         value={formData.residence}
                                         required
                                     >
-                                        <option value="H">Hosteler</option>
-                                        <option value="D">Day Scholar</option>
+                                        <option value="">Select Your Residence</option>
+                                        <option value="Hosteller">Hosteller</option>
+                                        <option value="Day Scholar">Day Scholar</option>
                                     </select>
+                                
                             </div>
                         
                         </div>
