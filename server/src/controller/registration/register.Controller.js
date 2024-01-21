@@ -41,12 +41,15 @@ const handleRegister = async (req, res) => {
     );
         
     const userId = response[0].insertId;
+     
 
     const response2 = await pool.query(
-        `INSERT INTO user_details (user_id, name, branch, year, address, phone, profile_pic, gender, email, residence,) VALUES (?, ?, ?, ?, ?, ?, ?)`,
+        `INSERT INTO user_details (user_id, name, branch, year, address, phone, profile_pic, gender, email, residence)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
         [userId, name, branch, year, address, phone, profile_pic, gender, email, residence]
     );
-
+    
+    
     return response && response2  ? { message : `You're Successfully Registered` } : { message : 'Failed to Register' };
     
     } catch (error) {
@@ -67,6 +70,7 @@ const handleRegister = async (req, res) => {
         }
 
         console.log(error);
+
 
         return { message : 'Failed' };
     }

@@ -41,8 +41,9 @@ const Registration = () => {
             ...formData,
             [name]: value,
         });
-        console.log(formData)
     };
+
+    console.log('formData:', formData)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -263,18 +264,18 @@ const Registration = () => {
                                     </select>
                             </div>
                             <div className="register-card-in-one-six-two">
-                                <select
-                                        className='register-card-in-one-six-two-input'
-                                        name="residence"
-                                        onChange={handleInputChange}
-                                        value={formData.residence}
-                                        required
-                                    >
-                                        <option value="">Select Your Residence</option>
-                                        <option value="Hosteller">Hosteller</option>
-                                        <option value="Day Scholar">Day Scholar</option>
-                                    </select>
-                                
+                            <select
+                                className='register-card-in-one-six-two-input'
+                                name="residence"
+                                onChange={handleInputChange}
+                                value={formData.residence}
+                                required
+                            >
+                                <option value="">Select Your Residence</option>
+                                <option value="H">Hosteller</option>
+                                <option value="D">Day Scholar</option>
+                            </select>
+
                             </div>
                         
                         </div>
