@@ -1,8 +1,8 @@
 import { Outlet } from "react-router-dom";
 import { useState, useEffect } from "react";
 import useAuth from '../../hooks/UseAuth'
-
 import useRefresh from '../../hooks/UseRefresh'
+import Loader from '../Loader/page'
 
 
 const PersistLogin = () => {
@@ -28,7 +28,7 @@ const PersistLogin = () => {
    
     if (loading) {
         return <div className='PeristLogin'>
-                    <h1>Loading....</h1>
+                    <Loader />
                </div>;
              }
     return <Outlet />;

@@ -4,6 +4,7 @@ import { useLocation, useNavigate, Link} from 'react-router-dom'
 import useAuth from '../../../hooks/UseAuth'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Loader from '../../../components/Loader/page'
 
 import './page.css';
 import login from '../../../assets/login.png';
@@ -27,6 +28,7 @@ const Registration = () => {
       });
 
     const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     // Handle input changes
     const handleInputChange = (e) => {
@@ -41,6 +43,8 @@ const Registration = () => {
         e.preventDefault();
         try {
 
+            setLoading(true);
+
             const response = await axios.post(`${host}/registration`, JSON.stringify(formData), {
                 headers: {
                     'Content-Type': 'application/json',
@@ -48,10 +52,17 @@ const Registration = () => {
                 withCredentials: true,
             });
 
-            alert(response.data.message)
+            if(response.data.message === `You're Successfully Registered`) {
+                toast.success(response.data.message)
+                return 
+            }
+
+            toast.error(response.data.message)
 
         } catch (error) {
-            console.log(error)
+            toast.error(error.response.data.message)
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -64,7 +75,9 @@ const Registration = () => {
 
 
   return (
-       <div className="register">
+    
+      <div className="register">
+           { loading ? <Loader /> : null}
         <div className="register-in">
             <div className="register-card">
                 <div className="register-card-in">
@@ -225,6 +238,7 @@ const Registration = () => {
 
                         <div className="register-card-in-one-five">
                             <button className='register-card-in-one-five-button' onClick={handleSubmit}>Register</button>
+                            <ToastContainer />
                             <Link className='register-card-in-one-five-link' to='/auth/login' >Login instead</Link>
                         </div>
 

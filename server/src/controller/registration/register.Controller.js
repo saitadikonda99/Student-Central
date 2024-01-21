@@ -3,6 +3,8 @@ const { pool } = require('../../config/db');
 const handleRegister = async (req, res) => {
 
     console.log(req);
+    const userValid = /^23000\d{5}$/;
+    const phoneValid = /^[789]\d{9}$/;
 
     const {
         username,
@@ -16,8 +18,17 @@ const handleRegister = async (req, res) => {
     } = req;
 
     if (!username || !password || !name || !branch || !year || !address || !phone || !profile_pic) {
-        return { message : 'Insufficient data' };
+        return { message : 'Please fill all the details' };
     }
+
+    if (!userValid.test(username)) {
+        return { message : 'Invalid Username' };
+    }
+     
+    if(!phoneValid.test(phone)) {
+        return { message : 'Invalid Phone Number' };
+    }
+    
     
     try {
     
@@ -33,7 +44,7 @@ const handleRegister = async (req, res) => {
         [userId, name, branch, year, address, phone, profile_pic]
     );
 
-    return response && response2  ? { message : 'Registered' } : { message : 'Failed' };
+    return response && response2  ? { message : `You're Successfully Registered` } : { message : 'Failed to Register' };
     
     } catch (error) {
     

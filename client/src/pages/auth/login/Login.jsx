@@ -5,6 +5,7 @@ import useAuth from '../../../hooks/UseAuth'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import Loader from '../../../components/Loader/page'
 import './Login.css';
 
 import login from '../../../assets/login.png';
@@ -23,6 +24,7 @@ function Login() {
       });
 
     const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
 
    // Handle input changes
    const handleInputChange = (e) => {
@@ -37,6 +39,7 @@ function Login() {
         e.preventDefault();
     
         try {
+            setLoading(true);
             const response = await axios.post(`${host}/login`,
               JSON.stringify(formData),
               {
@@ -62,8 +65,6 @@ function Login() {
                 user,
             });
 
-             console.log('auth:', auth);
-
              if(auth.role.includes('Student')) {
                 navigate('/student', { replace: true });
              }
@@ -72,20 +73,13 @@ function Login() {
             }
 
         } catch (error) { 
-            setError(error?.message);
-        }  
+            toast.error('Login Failed')
+        } finally {
+            setLoading(false);
+        }
     };
 
-    const handleToast = () => {
-        error && toast.error('Login Failed', {
-            position: "top-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            draggable: true,
-            });
-    }
-
+    
     useEffect(() => {
 
         if(auth) {
@@ -97,6 +91,7 @@ function Login() {
   return (
 
     <div className="login">
+        { loading ? <Loader /> : null}
         <div className="login-in">
             <div className="login-card">
                 <div className="login-card-in">
@@ -126,7 +121,7 @@ function Login() {
                                     />
                                 </div>
                                 <div className="login-card-in-one-one-three">
-                                    <button type='submit' onClick={handleToast}>Login</button>
+                                    <button type='submit'>Login</button>
                                     <Link className='login-card-in-one-one-three-link' to='/auth/register' >Already registered?</Link>
                                     <ToastContainer />
                                 </div>
