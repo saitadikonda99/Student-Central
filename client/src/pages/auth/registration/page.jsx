@@ -16,13 +16,31 @@ const Registration = () => {
     const from = location?.state?.from || "/";
     const navigate = useNavigate()
 
+    // id INT(11) NOT NULL AUTO_INCREMENT,
+    // user_id INT(11) NOT NULL,
+    // name VARCHAR(255) NOT NULL,
+    // gender VARCHAR(255) NOT NULL,
+    // branch VARCHAR(255) NOT NULL,
+    // year INT NOT NULL,
+    // email VARCHAR(255) NOT NULL,
+    // address VARCHAR(255) NOT NULL,
+    // residence VARCHAR(255) NOT NULL,
+    // phone VARCHAR(255) NOT NULL,
+    // profile_pic VARCHAR(255) NOT NULL,
+    // created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    // PRIMARY KEY (id),
+    // FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+
     const [formData, setFormData] = useState({
         username: '',
         password: '',
         name: '',
+        gender: '',
         branch: '',
         year: '',
+        email: '',
         address: '',
+        residence: '',
         phone: '',
         profile_pic: 'NA',
       });
@@ -123,53 +141,98 @@ const Registration = () => {
                                 />
                             </div>
                             <div className="register-card-in-one-two-two">
-                                <select 
-                                    className='register-card-in-one-two-two-input'
-                                    name="branch"
-                                    onChange={handleInputChange}
-                                    value={formData.branch}
-                                    required
-                                >
-                                    <option value="">Select Branch</option>
-                                    <option value="CSE">CSE</option>
-                                    <option value="ECE">ECE</option>
-                                    <option value="ME">ME</option>
-                                    <option value="CE">CE</option>
-                                    <option value="EE">EE</option>
-                                    <option value="CHE">CHE</option>
-                                    <option value="MME">MME</option>
-                                    <option value="PIE">PIE</option>
-                                    <option value="EPH">EPH</option>
-                                    <option value="MATH">MATH</option>
-                                    <option value="PHY">PHY</option>
-                                    <option value="CHEM">CHEM</option>
-                                    <option value="HSS">HSS</option>
-                                </select>
+                                <input 
+                                className='register-card-in-one-two-two-input'
+                                type="email"
+                                name="Email"
+                                placeholder='Email'
+                                onChange={handleInputChange}
+                                value={formData.email}
+                                required
+                                />
+
                             </div>
                         </div>
 
                         <div className="register-card-in-one-three">
                             <div className="register-card-in-one-three-one">
-                                <select 
+                                <select
                                     className='register-card-in-one-three-one-input'
-                                    name="year"
+                                    name="gender"
                                     onChange={handleInputChange}
-                                    value={formData.year}
+                                    value={formData.gender}
                                     required
                                 >
-                                    <option value="">Select Year</option>
-                                    <option value="1">1st</option>
+
+                                    <option value="Female">Female</option>
+                                    <option value="Male">Male</option>
+
                                 </select>
                             </div>
                             <div className="register-card-in-one-three-two">
-                                <select 
-                                    className='register-card-in-one-three-two-input'
-                                    name="address"
+                                <select
+                                        className='register-card-in-one-three-two-input'
+                                        name="year"
+                                        onChange={handleInputChange}
+                                        value={formData.year}
+                                        required
+                                    >
+                                        <option value="1">1 (Freshmen Engineering) </option>
+
+                                    </select>
+                            </div>
+                            <div className="register-card-in-one-three-three">
+                                <select
+                                        className='register-card-in-one-three-three-input'
+                                        name="branch"
+                                        onChange={handleInputChange}
+                                        value={formData.branch}
+                                        required
+                                    >
+                                        <option value="CSE">CSE</option>
+                                        <option value="ECE">ECE</option>
+                                        <option value="ME">ME</option>
+                                    </select>
+                            </div>
+                        </div>
+
+                        <div className="register-card-in-one-four">
+                        <div className="register-card-in-one-four-two">
+                                <input 
+                                    className='register-card-in-one-four-two-input'
+                                    type="text"
+                                    name="phone"
+                                    placeholder="Mobile Number"
                                     onChange={handleInputChange}
-                                    value={formData.address}
+                                    value={formData.phone}
                                     required
-                                >
-                                    <option value="">Select Your State / Union Territory</option>
+                                />
+                            </div>
+
+                            {/* <div className="register-card-in-one-four-one">
+                                <input 
+                                    className='register-card-in-one-four-one-input'
+                                    type="email"
+                                    name="email"
+                                    placeholder="Email"
+                                    onChange={handleInputChange}
+                                    value={formData.email}
+                                    required
+                                />
+                            </div> */}
+                            
+                        </div>
+
+                        <div className="register-card-in-one-six">
+                            <div className="register-card-in-one-six-one">
+                                <select
+                                        className='register-card-in-one-six-one-input'
+                                        name="address"
+                                        onChange={handleInputChange}
+                                        value={formData.address}
+                                        required
+                                    >
+                                        <option value="">Select Your State / Union Territory</option>
                                     <option value="Andhra Pradesh">Andhra Pradesh</option>
                                     <option value="Arunachal Pradesh">Arunachal Pradesh</option>
                                     <option value="Assam">Assam</option>
@@ -206,34 +269,21 @@ const Registration = () => {
                                     <option value="Ladakh">Ladakh</option>
                                     <option value="Lakshadweep">Lakshadweep</option>
                                     <option value="Puducherry">Puducherry</option>
-
-                                </select>
-
+                                    </select>
                             </div>
-                        </div>
-
-                        <div className="register-card-in-one-four">
-                            <div className="register-card-in-one-four-one">
-                                <input 
-                                    className='register-card-in-one-four-one-input'
-                                    type="text"
-                                    name="phone"
-                                    placeholder="Phone Number"
-                                    onChange={handleInputChange}
-                                    value={formData.phone}
-                                    required
-                                />
+                            <div className="register-card-in-one-six-two">
+                                <select
+                                        className='register-card-in-one-six-two-input'
+                                        name="residence"
+                                        onChange={handleInputChange}
+                                        value={formData.residence}
+                                        required
+                                    >
+                                        <option value="H">Hosteler</option>
+                                        <option value="D">Day Scholar</option>
+                                    </select>
                             </div>
-                            <div className="register-card-in-one-four-two">
-                                {/* <input 
-                                    className='register-card-in-one-four-two-input'
-                                    type="text"
-                                    name="profile_pic"
-                                    placeholder="Profile Picture"
-                                    onChange={handleInputChange}
-                                    value={formData.profile_pic}
-                                /> */}
-                            </div>
+                        
                         </div>
 
                         <div className="register-card-in-one-five">
@@ -241,6 +291,11 @@ const Registration = () => {
                             <ToastContainer />
                             <Link className='register-card-in-one-five-link' to='/auth/login' >Login instead</Link>
                         </div>
+
+
+
+
+                       
 
 
 
