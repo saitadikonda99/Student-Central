@@ -5,6 +5,7 @@ import useAuth from '../../../../hooks/UseAuth'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loader from '../../../../components/Loader/page'
+
 import './Registration.css';
 
 const Registration = () => {
@@ -85,16 +86,25 @@ const Registration = () => {
     };
 
     return (
-        <div className="ClubComponent">
+        <div className="clubregistration-one">
             {loader && <Loader />}
-            <div className="ClubComponent-in">
-                <div className="ClubComponent-in-Topbar">
-                    <div className="ClubComponent-in-Topbar-in">
-                        <button onClick={() => handleDomainClick(null)}>All</button>
-                        <button onClick={() => handleDomainClick('TEC')}>TEC</button>
-                        <button onClick={() => handleDomainClick('Apple')}>Apple</button>
-                        <button onClick={() => handleDomainClick('A2')}>A2</button>
-                        <button onClick={() => handleDomainClick('A3')}>A3</button>
+            <div className="clubregistration-one-in">
+                <div className="clubregistration-one-in-header">
+                    <div className="clubregistration-one-in-header-in">
+                        <h1>Club Registration</h1>
+                        <p>You can enroll in a club based on the category of your choice. The available categories include TEC (Technology Clubs), LCH (Liberal Arts and Hobby Clubs), ESO (Extension and Outreach Clubs), IIE (Innovation, Incubation, and Entrepreneurship Clubs), and HWB (Health and Well-Being Clubs).</p>
+                    </div>
+                </div>
+                <div className="clubregistration-two">
+                    <div className="clubregistration-two-in">
+                        <div className="clubregistration-two-in-tab">
+                            <button onClick={() => handleDomainClick(null)}>All</button>
+                            <button onClick={() => handleDomainClick('TEC')}>Technology Clubs</button>
+                            <button onClick={() => handleDomainClick('LCH')}>Liberal Arts and Cultural Clubs</button>
+                            <button onClick={() => handleDomainClick('ESO')}>Extension and Outreach Clubs</button>
+                            <button onClick={() => handleDomainClick('IIE')}>Innovation, Incubation, and Entrepreneurship Clubs</button>
+                            <button onClick={() => handleDomainClick('HWB')}>Health and Well Being Clubs</button>
+                        </div>
                     </div>
                 </div>
                 <div className="ClubList">
@@ -110,7 +120,7 @@ const Registration = () => {
 
 const ClubCard = ({ club, handleClubRegCheck }) => {
     return (
-        <div className="ClubCard">
+        <div className="clubregistration-two">
             <div className="ClubCard-in">
                 <div className="ClubCard-img">
                     <div className="ClubCard-img-in">
