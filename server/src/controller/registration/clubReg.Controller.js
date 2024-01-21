@@ -12,7 +12,7 @@ const handleClubReg = async (req, res) => {
         return response ? { message : 'Registered' } : { message : 'Failed' };
     } catch (error) {
         if (error.code === 'ER_DUP_ENTRY') {
-            return { message : 'Already Registered' };
+            return { message : 'Already Registered to a Club' };
         }
         return { message : 'Failed' };
     }

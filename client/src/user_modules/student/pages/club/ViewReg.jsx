@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import Axios from '../../hooks/UseAxiosPrivate'
-import useAuth from '../../hooks/UseAuth'
+import Axios from '../../../../hooks/UseAxiosPrivate'
+import useAuth from '../../../../hooks/UseAuth'
 
 const ViewReg = () => {
 

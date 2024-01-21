@@ -12,8 +12,8 @@ import RequiredAuth from './components/auth/RequireAuth';
 import Login from './pages/auth/login/Login';
 import Register from './pages/auth/registration/page';
 import PersistLogin from './components/auth/PersistLogin'
-import ClubReg from './pages/club/Registration';
-import ViewReg from './pages/club/ViewReg';
+import ClubReg from './user_modules/student/pages/club/Registration';
+import ViewReg from './user_modules/student/pages/club/ViewReg';
 import StudentApp from './user_modules/student/studentApp';
 import Layout from './components/auth/Layout';
 
@@ -29,7 +29,7 @@ function App() {
 
 
                   <Route element={<RequiredAuth allowedRoles={['Student']}/>}>
-                    <Route path='/student' element={<StudentApp/>}/>  
+                    <Route path='/student/*' element={<StudentApp/>}/>  
                   </Route>
 
                   <Route path='/' element={<Home/>}/>

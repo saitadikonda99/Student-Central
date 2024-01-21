@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import Axios from '../../hooks/UseAxiosPrivate'
+import Axios from '../../../../hooks/UseAxiosPrivate'
 import { useLocation, useNavigate, Link} from 'react-router-dom'
-import useAuth from '../../hooks/UseAuth'
+import useAuth from '../../../../hooks/UseAuth'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -43,7 +43,7 @@ const Registration = () => {
                 withCredentials: true,
             });
 
-            alert(response.data.message)
+            toast.success(response.data.message)
 
         } catch (error) {
             console.log(error)
@@ -62,6 +62,7 @@ const Registration = () => {
                                 <h3>{club?.club_logo}</h3>
                                 <h3>{club?.club_domain}</h3>
                                 <button onClick={ () => handleClubReg(club.id)} >Join</button>
+                                <ToastContainer />
                             </div>
                         )
                     })

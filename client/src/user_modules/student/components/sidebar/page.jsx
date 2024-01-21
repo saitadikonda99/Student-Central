@@ -15,17 +15,17 @@ const page = () => {
                 </div>
                 <div className="sidebar-option">
                     <div className="sidebar-option-in">
-                        <Link className='sidebar-option-in-link'>Profile</Link>
+                        <Link className='sidebar-option-in-link' to='/student/profile'>Profile</Link>
                     </div>
                 </div>
                 <div className="sidebar-option">
                     <div className="sidebar-option-in">
-                        <Link className='sidebar-option-in-link'>Club Registration</Link>
+                        <Link className='sidebar-option-in-link' to='/student/clubregistration'>Club Registration</Link>
                     </div>
                 </div>
                 <div className="sidebar-option">
                     <div className="sidebar-option-in">
-                        <Link className='sidebar-option-in-link'>View Registration</Link>
+                        <Link className='sidebar-option-in-link' to='/student/viewregistration'>View Registration</Link>
                     </div>
                 </div>
             </div>
