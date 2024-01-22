@@ -30,7 +30,8 @@ packages/*/docs-dist
 packages/*/node
 packages/*/public
 
-server/src/.env
+server/.env
+
 
 # Editor directories and files
 .vscode/*
