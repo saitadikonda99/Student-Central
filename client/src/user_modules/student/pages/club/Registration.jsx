@@ -195,7 +195,7 @@ const ClubCard = ({ club, handleClubRegCheck, handleClickOpen, handleClose, open
                 why: '',
                 resumeLink: '',
                 preknowledge: '',
-            });
+            });1
         } else {
             toast.error('Please fill out all fields.');
         }
