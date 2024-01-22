@@ -4,6 +4,12 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../../../hooks/UseAuth';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 import Loader from '../../../../components/Loader/page';
 
 import './Registration.css';
@@ -16,8 +22,14 @@ const Registration = () => {
     const navigate = useNavigate();
     const userId = auth?.id;
 
+
     const [clubData, setClubData] = useState([]);
     const [loader, setLoader] = useState(false);
+
+    const [open, setOpen] = React.useState(false);
+
+    
+
 
     useEffect(() => {
         const fetchClub = async () => {
@@ -34,9 +46,16 @@ const Registration = () => {
         fetchClub();
     }, []);
 
-    const handleClubRegCheck = (clubId) => {
-        window.confirm("Are you sure you want to join this club?") && handleClubReg(clubId);
+    const handleClickOpen = () => {
+        setOpen(true);
+      };
+    
+      const handleClose = () => {
+        setOpen(false);
+      };
 
+      const handleClubRegCheck = (clubId, formData) => {
+        window.confirm("Are you sure you want to join this club?") && handleClubReg(clubId, formData);
     };
 
     const handleClubReg = async (clubId, formData) => {
@@ -79,6 +98,7 @@ const Registration = () => {
     };
 
     const [selectedDomain, setSelectedDomain] = useState(null);
+    const [activeButton, setActiveButton] = useState('TEC');
 
     const filteredClubData = selectedDomain
         ? clubData.filter((club) => club.club_domain === selectedDomain)
@@ -86,7 +106,9 @@ const Registration = () => {
 
     const handleDomainClick = (domain) => {
         setSelectedDomain(domain);
+        setActiveButton(domain);
     };
+
 
     return (
         <div className="clubregistration-one">
@@ -101,30 +123,39 @@ const Registration = () => {
                 <div className="clubregistration-two">
                     <div className="clubregistration-two-in">
                         <div className="clubregistration-two-in-tab">
-                            <button onClick={() => handleDomainClick(null)}>All</button>
-                            <button onClick={() => handleDomainClick('TEC')}>Technology Clubs</button>
-                            <button onClick={() => handleDomainClick('LCH')}>Liberal Arts and Cultural Clubs</button>
-                            <button onClick={() => handleDomainClick('ESO')}>Extension and Outreach Clubs</button>
-                            <button onClick={() => handleDomainClick('IIE')}>Innovation, Incubation, and Entrepreneurship Clubs</button>
-                            <button onClick={() => handleDomainClick('HWB')}>Health and Well Being Clubs</button>
+                            {/* <button onClick={() => handleDomainClick(null)}>All Categories of Clubs</button> */}
+                            <button className={activeButton === 'TEC' ? 'active' : ''} onClick={() => handleDomainClick('TEC')} >Technology Clubs</button>
+                            <button className={activeButton === 'LCH' ? 'active' : ''} onClick={() => handleDomainClick('LCH')}>Liberal Arts and Cultural Clubs</button>
+                            <button className={activeButton === 'ESO' ? 'active' : ''} onClick={() => handleDomainClick('ESO')}>Extension and Outreach Clubs</button>
+                            <button className={activeButton === 'IIE' ? 'active' : ''} onClick={() => handleDomainClick('IIE')}>Innovation, Incubation, and Entrepreneurship Clubs</button>
+                            <button className={activeButton === 'HWB' ? 'active' : ''} onClick={() => handleDomainClick('HWB')}>Health and Well Being Clubs</button>
                         </div>
                     </div>
                 </div>
                 <div className="ClubList">
-                    {filteredClubData.map((club) => (
-                        <ClubCard
-                            key={club.id}
-                            club={club}
-                            handleClubRegCheck={handleClubRegCheck}
-                        />
-                    ))}
+                {filteredClubData.map((club) => (
+                    <ClubCard
+                        key={club.id}
+                        club={club}
+                        handleClubRegCheck={handleClubRegCheck}
+                        handleClickOpen={handleClickOpen} 
+                        handleClose={handleClose} 
+                        open={open} // Pass open as a prop
+                    />
+                ))}
                 </div>
             </div>
         </div>
     );
 };
 
-const ClubCard = ({ club, handleClubRegCheck }) => {
+const ClubCard = ({ club, handleClubRegCheck, handleClickOpen, handleClose, open }) => {
+
+    const handleRegisterAndOpen = () => {
+        handleRegisterClick(); // This is defined in the same component, so no need to receive it as a prop
+        handleClickOpen();
+    };
+
     const [isFormVisible, setIsFormVisible] = useState(false);
     const [formData, setFormData] = useState({
         why: '',
@@ -154,6 +185,8 @@ const ClubCard = ({ club, handleClubRegCheck }) => {
     };
 
     const handleConfirmClick = () => {
+        // setOpen(false);
+
         console.log('Form Data:', formData);
         if (formData.why && formData.resumeLink && formData.preknowledge) {
             handleClubRegCheck(club.id, formData);
@@ -200,7 +233,7 @@ const ClubCard = ({ club, handleClubRegCheck }) => {
                             </div>
                             <div className="clubregistration-two-in-card-two-in-four">
                                 <div className="clubregistration-two-in-card-two-in-four-in">
-                                    <button onClick={handleRegisterClick}>Register</button>
+                                <button onClick={handleRegisterAndOpen}>Submit Application</button>
                                 </div>
                             </div>
                         </div>
@@ -208,28 +241,58 @@ const ClubCard = ({ club, handleClubRegCheck }) => {
                 </div>
             </div>
 
-            {isFormVisible && (
+            <React.Fragment>
+        <Dialog
+        open={open} // Use open prop
+        onClose={handleClose} // Use handleClose prop
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+    >
+        <DialogTitle id="alert-dialog-title">
+          {"Club Head will can approve / disapprove your application based on your write up."}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
                 <div className="clubregistration-popup">
                     <div className="clubregistration-popup-content">
-                        <h2>Registration Form</h2>
-                        <label htmlFor="why">Why do you want to join?</label>
-                        <input
+                        <h2 className='clubregistration-popup-content-header'>Registration Form</h2>
+                        <label className='clubregistration-popup-content-label'  htmlFor="why">Why do you want to join? (word limit 30 words)</label> 
+                        {/* <input
+
                             type="text"
                             id="why"
                             name="why"
                             value={formData.why}
                             onChange={handleInputChange}
                         />
-                        <label htmlFor="resumeLink">Resume Link</label>
+                        change this to a text area */}
+                        <textarea
+                            className='clubregistration-popup-content-textarea'
+                            type="text"
+                            id="why"
+                            name="why"
+                            value={formData.why}
+                            onChange={handleInputChange}
+                        />
+                        <label className='clubregistration-popup-content-label' htmlFor="resumeLink">Resume Link</label>
                         <input
+                            className='clubregistration-popup-content-input'
                             type="text"
                             id="resumeLink"
                             name="resumeLink"
                             value={formData.resumeLink}
                             onChange={handleInputChange}
                         />
-                        <label htmlFor="preknowledge">Preknowledge</label>
-                        <input
+                        <label className='clubregistration-popup-content-label' htmlFor="preknowledge">Preknowledge</label>
+                        {/* <input
+                            type="text"
+                            id="preknowledge"
+                            name="preknowledge"
+                            value={formData.preknowledge}
+                            onChange={handleInputChange}
+                        /> */}
+                        <textarea
+                            className='clubregistration-popup-content-textarea'
                             type="text"
                             id="preknowledge"
                             name="preknowledge"
@@ -238,11 +301,20 @@ const ClubCard = ({ club, handleClubRegCheck }) => {
                         />
                         <div className="clubregistration-popup-buttons">
                             <button onClick={handleCancelClick}>Cancel</button>
-                            <button onClick={handleConfirmClick}>Confirm</button>
+                            <button onClick={handleConfirmClick} >Confirm</button>
                         </div>
                     </div>
                 </div>
-            )}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} autoFocus>
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </React.Fragment>
+
         </div>
     );
 };
