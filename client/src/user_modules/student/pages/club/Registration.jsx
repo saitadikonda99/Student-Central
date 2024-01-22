@@ -86,7 +86,6 @@ const Registration = () => {
     
             if (response.data?.message === 'Registered Successfully') {
                 toast.success('Registered Successfully');
-                navigate('/student/club/viewReg');
             }
     
             console.log('response:', response.data.message);
@@ -143,6 +142,9 @@ const Registration = () => {
                         open={open} // Pass open as a prop
                     />
                 ))}
+
+                <ToastContainer />
+
                 </div>
             </div>
         </div>
@@ -185,8 +187,6 @@ const ClubCard = ({ club, handleClubRegCheck, handleClickOpen, handleClose, open
     };
 
     const handleConfirmClick = () => {
-        // setOpen(false);
-
         console.log('Form Data:', formData);
         if (formData.why && formData.resumeLink && formData.preknowledge) {
             handleClubRegCheck(club.id, formData);
@@ -199,6 +199,7 @@ const ClubCard = ({ club, handleClubRegCheck, handleClickOpen, handleClose, open
         } else {
             toast.error('Please fill out all fields.');
         }
+        handleClose();
     };
 
     return (
