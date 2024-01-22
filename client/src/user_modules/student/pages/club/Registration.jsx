@@ -85,10 +85,13 @@ const Registration = () => {
     setSelectedDomain(domain);
   };
 
-  const handleSubmit = () => {
-    handleClickOpen();
-    window.confirm('Are you sure you want to join this club?');
-  }
+  const [selectedClubId, setSelectedClubId] = useState(null);
+
+const handleSubmit = (clubId) => {
+  handleClickOpen();
+  setSelectedClubId(clubId);
+  window.confirm('Are you sure you want to join this club?');
+}
 
   const [open, setOpen] = React.useState(false);
   const [formData, setFormData] = useState({
@@ -107,17 +110,18 @@ const Registration = () => {
 
   const handleConfirmClick = async () => {
     try {
+      const { why, resumeLink, preknowledge } = formData;
       setLoader(true);
-      const response = await axios.post(
-        `${host}/clubReg`,
-        JSON.stringify({ userId, clubId }),
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          withCredentials: true,
-        }
-      );
+    const response = await axios.post(
+      `${host}/clubReg`,
+      JSON.stringify({ userId, clubId: selectedClubId, why, resumeLink, preknowledge }),
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        withCredentials: true,
+      }
+    );
 
       if (response.data?.message == 'Already Registered to a Club') {
         toast.warn('Already Registered to a Club');
@@ -206,7 +210,7 @@ const Registration = () => {
                                     </div>
                                     <div className="clubregistration-two-in-card-two-in-four">
                                         <div className="clubregistration-two-in-card-two-in-four-in">
-                                        <button onClick={handleSubmit}>Submit Application</button>
+                                        <button onClick={() => handleSubmit(club.id)}>Submit Application</button>
                                         </div>
                                     </div>
                                 </div>
@@ -269,6 +273,7 @@ const Registration = () => {
                         <div className="clubregistration-popup-buttons">
                             <button onClick={handleCancelClick}>Cancel</button>
                             <button onClick={handleConfirmClick} >Confirm</button>
+                            < ToastContainer />
                         </div>
                     </div>
                 </div>
