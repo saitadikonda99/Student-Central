@@ -81,11 +81,19 @@ const Registration = () => {
     }
   };
 
+const [activeButton, setActiveButton] = useState('TEC');
+
+  
+
   const handleDomainClick = (domain) => {
     setSelectedDomain(domain);
+    setActiveButton(domain); // set the active button
   };
 
   const [selectedClubId, setSelectedClubId] = useState(null);
+
+
+  
 
 const handleSubmit = (clubId) => {
   handleClickOpen();
@@ -164,7 +172,7 @@ const handleSubmit = (clubId) => {
                 </div>
             </div>
         </div>
-        <div className="ClubComponent-in-Topbar">
+        {/* <div className="ClubComponent-in-Topbar">
             <div className="ClubComponent-in-Topbar-in">
                 <div className="ClubComponent-in-Topbar-in-in">
                     <button onClick={() => handleDomainClick(null)}>All</button>
@@ -174,7 +182,20 @@ const handleSubmit = (clubId) => {
                     <button onClick={() => handleDomainClick('A3')}>A3</button>
                 </div>
             </div>
-        </div>
+        </div> */}
+
+        <div className="clubregistration-two">
+                    <div className="clubregistration-two-in">
+                        <div className="clubregistration-two-in-tab">
+
+                            <button className={activeButton === 'TEC' ? 'active' : ''} onClick={() => handleDomainClick('TEC')} >Technology Clubs</button>
+                            <button className={activeButton === 'LCH' ? 'active' : ''} onClick={() => handleDomainClick('LCH')}>Liberal Arts and Cultural Clubs</button>
+                            <button className={activeButton === 'ESO' ? 'active' : ''} onClick={() => handleDomainClick('ESO')}>Extension and Outreach Clubs</button>
+                            <button className={activeButton === 'IIE' ? 'active' : ''} onClick={() => handleDomainClick('IIE')}>Innovation, Incubation, and Entrepreneurship Clubs</button>
+                            <button className={activeButton === 'HWB' ? 'active' : ''} onClick={() => handleDomainClick('HWB')}>Health and Well Being Clubs</button>
+                        </div>
+                    </div>
+                </div>
         <div className="ClubList">
           {clubData
             .filter((club) => !selectedDomain || club.club_domain === selectedDomain)
