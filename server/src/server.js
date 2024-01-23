@@ -29,6 +29,8 @@ const getClubs = require('./routes/clubs/getClubs.Route')
 const viewProfile = require('./routes/profile/profile.Route')
 const Admin = require('./routes/admin/admin.Route')   
 
+const verifyJWT = require('./middleware/verifyJWT');
+
 
 // cors 
 app.use(cors(corsOptions))
@@ -53,7 +55,7 @@ app.use('/registration', Register)
 app.use('/clubReg', ClubReg)
 app.use('/viewUserReg', viewUserReg)
 app.use('/getClubs', getClubs)
-app.use('/viewProfile', viewProfile)
+app.use('/viewProfile', verifyJWT, viewProfile)
 app.use('/admin', Admin)
 
 
