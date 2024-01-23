@@ -198,40 +198,40 @@ const handleSubmit = (clubId) => {
                 </div>
         <div className="ClubList">
           {clubData
-            .filter((club) => !selectedDomain || club.club_domain === selectedDomain)
+            .filter((club) => !selectedDomain || club?.club_domain === selectedDomain)
             .map((club) => (
                 <div key={club.id} className="clubregistration-two">
                     <div className="clubregistration-two-in">
                         <div className="clubregistration-two-in-card">
                             <div className="clubregistration-two-in-card-one">
                                 <div className="clubregistration-two-in-card-one-in">
-                                    <img src={club.club_logo} alt="image of club" />
+                                    <img src={club?.club_logo} alt="image of club" />
                                 </div>
                             </div>
                             <div className="clubregistration-two-in-card-two">
                                 <div className="clubregistration-two-in-card-two-in">
                                     <div className="clubregistration-two-in-card-two-in-one">
-                                        <p>{club.club_domain}</p>
-                                        <h1>{club.club_name}</h1>
-                                        <p>{club.club_desc}</p>
+                                        <p>{club?.club_domain}</p>
+                                        <h1>{club?.club_name}</h1>
+                                        <p>{club?.club_desc}</p>
                                     </div>
                                     <div className="clubregistration-two-in-card-two-in-two">
                                         <div className="clubregistration-two-in-card-two-in-two-in">
-                                            <p>{club.skillset_one}</p>
-                                            <p>{club.skillset_two}</p>
-                                            <p>{club.skillset_three}</p>
-                                            <p>{club.skillset_four}</p>
-                                            <p>{club.skillset_five}</p>
+                                            <p>{club?.skillset_one}</p>
+                                            <p>{club?.skillset_two}</p>
+                                            <p>{club?.skillset_three}</p>
+                                            <p>{club?.skillset_four}</p>
+                                            <p>{club?.skillset_five}</p>
                                         </div>
                                     </div>
                                     <div className="clubregistration-two-in-card-two-in-three">
                                         <div className="clubregistration-two-in-card-two-in-three-in">
-                                            <p>Email: <span>{club.email}</span></p>
+                                            <p>Email: <span>{club?.email}</span></p>
                                         </div>
                                     </div>
                                     <div className="clubregistration-two-in-card-two-in-four">
                                         <div className="clubregistration-two-in-card-two-in-four-in">
-                                        <button onClick={() => handleSubmit(club.id)}>Submit Application</button>
+                                        <button onClick={() => handleSubmit(club?.id)}>Submit Application</button>
                                         </div>
                                     </div>
                                 </div>

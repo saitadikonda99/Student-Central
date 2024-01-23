@@ -47,7 +47,7 @@ const ViewReg = () => {
 
                     regData.map((reg) => {
                         return (
-                            <div key={reg.club_id} className="ViewComponent-in-reg" >
+                            <div key={reg?.club_id} className="ViewComponent-in-reg" >
                                 <h1>You are registered to <span>{reg?.club_name} </span>under <span>{reg?.club_domain}</span> category </h1>
                             </div>
                         )
