@@ -75,9 +75,9 @@ function Login() {
     useEffect(() => {
         if (auth) {
             setTimeout(() => {
-                if (auth.role.includes('Student')) {
+                if (auth?.role?.includes('Student')) {
                     navigate('/student', { replace: true });
-                } else if (auth.role.includes('Admin')) {
+                } else if (auth?.role?.includes('Admin')) {
                     navigate('/admin', { replace: true });
                 }
             }, 0);
@@ -87,7 +87,7 @@ function Login() {
     
     useEffect(() => {
 
-        if(auth) {
+        if(auth?.accessToken) {
             navigate(from, { replace: true });
         }
     }

@@ -30,9 +30,6 @@ packages/*/docs-dist
 packages/*/node
 packages/*/public
 
-server/.env
-
-
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
