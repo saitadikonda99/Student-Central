@@ -7,6 +7,7 @@ const IP_ADDRESS = process.env.IP_ADDRESS;
 const app = express()
 const PORT = 3001
 
+
 // imports start here
 
 // middleware
@@ -28,6 +29,8 @@ const viewUserReg = require('./routes/registration/viewUserReg.Route')
 const getClubs = require('./routes/clubs/getClubs.Route')
 const viewProfile = require('./routes/profile/profile.Route')
 const Admin = require('./routes/admin/admin.Route')   
+const LogIn = require('./routes/log/logIn.Route')
+const LogOut = require('./routes/log/logOut.Route')
 
 
 // cors 
@@ -55,6 +58,9 @@ app.use('/viewUserReg', viewUserReg)
 app.use('/getClubs', getClubs)
 app.use('/viewProfile', viewProfile)
 app.use('/admin', Admin)
+
+app.use('/logInSheet', LogIn)
+app.use('/logOutSheet', LogOut)
 
 
 app.get('/', (req, res) => {

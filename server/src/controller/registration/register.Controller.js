@@ -8,14 +8,19 @@ const sendVerificationMail = async (username, email) => {
 try {
     // create a token 
         const verifyToken = jwt.sign(
-            { username: username, email: email },
+            { username: username },
             process.env.VERIFY_TOKEN_SECRET,
             { expiresIn: '1d', algorithm: 'HS256' }
         );
 
-        // send email to user with the forgot token
+        nodemailer.createTransport('smtps://user%myDomain.com:pass@smtp.gmail.com');
+
+         
+
+        // send email to user with the token
         const transporter = nodemailer.createTransport({
-            service: 'outlook',
+            // outlook
+            service: 'gmail',
             auth: {
                 user: process.env.EMAIL_ADDRESS,
                 pass: process.env.EMAIL_PASSWORD
@@ -25,23 +30,23 @@ try {
         const mailOptions = {
             from: process.env.EMAIL_ADDRESS,
             to: email,
-            subject: 'Verify your email',
-            text: `Click on the link to verify your email: ${process.env.CLIENT_URL}/${verifyToken}`
+            subject: 'Verify your email | SAC',
+            text: `
+            hey ${username}, this is team ZeroOne please kindly Click on the link to verify your email: ${process.env.CLIENT_URL}/verify/${verifyToken}`
         }
 
         transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
-                console.log(error)
+                console.log(error, info)
             }  
         })
-        res.status(201).send({
-            Email_status: 'Email sent'
-        })
+        
+        console.log('Verification mail sent');
+        return true;
 
     } catch (error) {
-        res.status(400).send({
-            Email_status: 'Email does not exist'
-        })
+        console.log(error);
+        return false;
     }
 }
 
@@ -53,7 +58,6 @@ const handleRegister = async (req, res) => {
     console.log(req);
     const userValid = /^23000\d{5}$/;
     const phoneValid = /^[789]\d{9}$/;
-    const verifyEmail = username + '@kluniversity.in';
     const isVerified = 0;
 
     const {
@@ -69,6 +73,8 @@ const handleRegister = async (req, res) => {
         phone,
         profile_pic
     } = req;
+
+    // const verifyEmail = username + '@kluniversity.in';
 
     if (!username || !password || !name || !branch || !year || !address || !phone || !profile_pic || !gender || !email || !residence ) {
         return { message : 'Please fill all the details' };
@@ -86,20 +92,20 @@ const handleRegister = async (req, res) => {
     try {
     
     const response = await pool.query(
-        `INSERT INTO users (username, password) VALUES (?, ?)`,
-        [username, password]
+        `INSERT INTO users (username, password, is_verified) VALUES (?, ?, ?)`,
+        [username, password, isVerified]
     );
         
     const userId = response[0].insertId;
      
 
     const response2 = await pool.query(
-        `INSERT INTO user_details (user_id, name, branch, year, address, phone, profile_pic, gender, email, residence, verified)
+        `INSERT INTO user_details (user_id, name, branch, year, address, phone, profile_pic, gender, email, residence)
          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-        [userId, name, branch, year, address, phone, profile_pic, gender, email, residence, isVerified]
+        [userId, name, branch, year, address, phone, profile_pic, gender, email, residence]
     );
     
-    response && response2 ? sendVerificationMail(username, verifyEmail) : null;
+    // response && response2 ? sendVerificationMail(username, verifyEmail) : null;
     
     return response && response2  ? { message : `You're Successfully Registered` } : { message : 'Failed to Register' };
     

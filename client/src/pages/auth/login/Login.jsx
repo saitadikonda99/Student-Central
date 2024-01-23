@@ -77,7 +77,7 @@ function Login() {
             setTimeout(() => {
                 if (auth?.role?.includes('Student')) {
                     navigate('/student', { replace: true });
-                } else if (auth.role.includes('Admin')) {
+                } else if (auth?.role?.includes('Admin')) {
                     navigate('/admin', { replace: true });
                 }
             }, 0);

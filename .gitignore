@@ -36,7 +36,6 @@ packages/*/docs-dist
 packages/*/node
 packages/*/public
 
-server/src/.env
 
 # Editor directories and files
 .vscode/*
