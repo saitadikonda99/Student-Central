@@ -4,11 +4,53 @@
 .student-home-in {
     margin: auto;
     width: 100%;
+    display: flex;
+    height: 100%;
 }
 .student-home-in-one {
-    width: 100%;
+    width: 70%;
 }
 .student-home-in-one-in p {
-    width: 80%;
+    width: 100%;
     font-size: 1.1rem;
+}
+.student-home-in-two {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid grey;
+    height: 100%;
+}
+.student-home-in-two-in {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+
+}
+.student-home-in-two-in-header {
+    width: 100%;
+    background-color: black;
+}
+.student-home-in-two-in-header h1 {
+    width: 100%;
+    font-size: 1.5rem;
+    color: white;
+    padding: 0.4rem 0.4rem;
+}
+
+.student-home-in-two-in-one {
+    width: 100%;
+}
+.student-home-in-two-in-one p {
+    width: 98%;
+    margin: auto;
+    font-size: 1.1rem;
+    padding: 0.4rem 0.4rem;
+    background-color: white;
+    border-bottom: 1px solid grey;
 }
