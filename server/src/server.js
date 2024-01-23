@@ -5,7 +5,7 @@ require('dotenv').config()
 
 const IP_ADDRESS = process.env.IP_ADDRESS;
 const app = express()
-const PORT = 7811
+const PORT = 3001
 
 // imports start here
 

@@ -11,7 +11,6 @@ const checkDomain = async (Domain) => {
 }
 
 
-
 const handleClubReg = async (req, res) => {
     const { userId, clubId, why, resumeLink, preknowledge } = req.body;
     console.log(userId, clubId, why, resumeLink, preknowledge);
