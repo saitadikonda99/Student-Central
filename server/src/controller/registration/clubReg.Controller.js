@@ -1,8 +1,21 @@
 const { pool } = require('../../config/db');
 
+// he can only register for one club in one domain 
+
+const checkDomain = async (Domain) => {
+    try {
+        
+    } catch (error) {
+        
+    }
+}
+
+
+
 const handleClubReg = async (req, res) => {
     const { userId, clubId, why, resumeLink, preknowledge } = req.body;
     console.log(userId, clubId, why, resumeLink, preknowledge);
+
 
     try {
         const response = await pool.query(

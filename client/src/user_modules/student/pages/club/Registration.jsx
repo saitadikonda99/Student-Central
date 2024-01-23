@@ -137,13 +137,21 @@ const handleSubmit = (clubId) => {
 
       if (response.data?.message === 'Registered Successfully') {
         toast.success('Registered Successfully');
+        alert('Registered Successfully');
       }
 
+
       console.log('response:', response.data.message);
+
+      // if i set false toast is not working 
+    
+      handleCloseSubmit();
+
     } catch (error) {
-      console.log(error);
+        toast.error('Something went wrong');
     } finally {
       setLoader(false);
+      handleClose();
     }
   }
 
@@ -154,7 +162,6 @@ const handleSubmit = (clubId) => {
   const handleClose = () => {
     setOpen(false);
   }
-
 
 
 
@@ -243,70 +250,61 @@ const handleSubmit = (clubId) => {
         </div>
       </div>
       <React.Fragment>
-        <Dialog
-        open={open} // Use open prop
-        onClose={handleClose} // Use handleClose prop
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-    >
-        <DialogTitle id="alert-dialog-title">
-          {"Club Head will can approve / disapprove your application based on your write up."}
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-                <div className="clubregistration-popup">
-                    <div className="clubregistration-popup-content">
-                        <h2 className='clubregistration-popup-content-header'>Registration Form</h2>
-                        <label className='clubregistration-popup-content-label'  htmlFor="why">Why do you want to join? (word limit 30 words)</label> 
-                        <textarea
-                            className='clubregistration-popup-content-textarea'
-                            type="text"
-                            id="why"
-                            name="why"
-                            value={formData.why}
-                            onChange={handleInputChange}
-                        />
-                        <label className='clubregistration-popup-content-label' htmlFor="resumeLink">Resume Link</label>
-                        <input
-                            className='clubregistration-popup-content-input'
-                            type="text"
-                            id="resumeLink"
-                            name="resumeLink"
-                            value={formData.resumeLink}
-                            onChange={handleInputChange}
-                        />
-                        <label className='clubregistration-popup-content-label' htmlFor="preknowledge">Preknowledge</label>
-                        {/* <input
-                            type="text"
-                            id="preknowledge"
-                            name="preknowledge"
-                            value={formData.preknowledge}
-                            onChange={handleInputChange}
-                        /> */}
-                        <textarea
-                            className='clubregistration-popup-content-textarea'
-                            type="text"
-                            id="preknowledge"
-                            name="preknowledge"
-                            value={formData.preknowledge}
-                            onChange={handleInputChange}
-                        />
-                        <div className="clubregistration-popup-buttons">
-                            <button onClick={handleCancelClick}>Cancel</button>
-                            <button onClick={handleConfirmClick} >Confirm</button>
-                            < ToastContainer />
-                        </div>
-                    </div>
-                </div>
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} autoFocus>
-            Close
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </React.Fragment>
+  <Dialog
+    open={open} // Use open prop
+    onClose={handleClose} // Use handleClose prop
+    aria-labelledby="alert-dialog-title"
+    aria-describedby="alert-dialog-description"
+  >
+    <DialogTitle id="alert-dialog-title">
+      {"Club Head will can approve / disapprove your application based on your write up."}
+    </DialogTitle>
+    <DialogContent>
+      <div className="clubregistration-popup">
+        <div className="clubregistration-popup-content">
+          <h2 className='clubregistration-popup-content-header'>Registration Form</h2>
+          <label className='clubregistration-popup-content-label'  htmlFor="why">Why do you want to join? (word limit 30 words)</label> 
+          <textarea
+            className='clubregistration-popup-content-textarea'
+            type="text"
+            id="why"
+            name="why"
+            value={formData.why}
+            onChange={handleInputChange}
+          />
+          <label className='clubregistration-popup-content-label' htmlFor="resumeLink">Resume Link</label>
+          <input
+            className='clubregistration-popup-content-input'
+            type="text"
+            id="resumeLink"
+            name="resumeLink"
+            value={formData.resumeLink}
+            onChange={handleInputChange}
+          />
+          <label className='clubregistration-popup-content-label' htmlFor="preknowledge">Preknowledge</label>
+          <textarea
+            className='clubregistration-popup-content-textarea'
+            type="text"
+            id="preknowledge"
+            name="preknowledge"
+            value={formData.preknowledge}
+            onChange={handleInputChange}
+          />
+          <div className="clubregistration-popup-buttons">
+            <button onClick={handleCancelClick}>Cancel</button>
+            <button onClick={handleConfirmClick} >Confirm</button>
+            < ToastContainer />
+          </div>
+        </div>
+      </div>
+    </DialogContent>
+    <DialogActions>
+      <Button onClick={handleClose} autoFocus>
+        Close
+      </Button>
+    </DialogActions>
+  </Dialog>
+</React.Fragment>
     </div>
   );
 };

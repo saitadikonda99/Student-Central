@@ -1,9 +1,11 @@
 const express = require('express')
 const cookieParser = require('cookie-parser')
-const cors = require('cors')
+const cors = require('cors');
+require('dotenv').config()
 
+const IP_ADDRESS = process.env.IP_ADDRESS;
 const app = express()
-const PORT = 3001
+const PORT = 7811
 
 // imports start here
 
@@ -59,6 +61,6 @@ app.get('/', (req, res) => {
     res.send(`<h1 style="text-align:center">Server running</h1>`);
 })
 
-app.listen(PORT, () => {
+app.listen(PORT, IP_ADDRESS, () => {
     console.log(`Server running on port ${PORT}`)
 })

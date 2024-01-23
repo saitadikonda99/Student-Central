@@ -73,7 +73,7 @@ const Registration = () => {
     }
 
     useEffect(() => {
-        if(auth){
+        if(auth?.accessToken){
             navigate(from, { replace: true })
             alert('You are already logged in')
         }
