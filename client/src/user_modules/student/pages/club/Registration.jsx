@@ -137,13 +137,21 @@ const handleSubmit = (clubId) => {
 
       if (response.data?.message === 'Registered Successfully') {
         toast.success('Registered Successfully');
+        alert('Registered Successfully');
       }
 
+
       console.log('response:', response.data.message);
+
+      // if i set false toast is not working 
+    
+      handleCloseSubmit();
+
     } catch (error) {
-      console.log(error);
+        toast.error('Something went wrong');
     } finally {
       setLoader(false);
+      handleClose();
     }
   }
 
@@ -154,7 +162,6 @@ const handleSubmit = (clubId) => {
   const handleClose = () => {
     setOpen(false);
   }
-
 
 
 

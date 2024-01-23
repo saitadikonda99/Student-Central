@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS user_details (
 -- Create a table named club_reg
 CREATE TABLE IF NOT EXISTS club_reg (
     id INT(11) NOT NULL AUTO_INCREMENT,
-    user_id INT(11) NOT NULL UNIQUE,
+    user_id INT(11) NOT NULL,
     club_id INT(11) NOT NULL,
     why TEXT NOT NULL,
     resume_link VARCHAR(255) NOT NULL,
