@@ -44,7 +44,8 @@ const ViewReg = () => {
                 <div className="viewregistration-in-one">
                     <div className="viewregistration-in-one-in">
                     {
-
+		   Array.isArray(regData) &&
+				
                     regData.map((reg) => {
                         return (
                             <div key={reg?.club_id} className="ViewComponent-in-reg" >
