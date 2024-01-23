@@ -29,8 +29,6 @@ const getClubs = require('./routes/clubs/getClubs.Route')
 const viewProfile = require('./routes/profile/profile.Route')
 const Admin = require('./routes/admin/admin.Route')   
 
-const verifyJWT = require('./middleware/verifyJWT');
-
 
 // cors 
 app.use(cors(corsOptions))
