@@ -1,0 +1,20 @@
+name: Student-Central Deployment Automation
+
+on:
+  push:
+    branches:
+      - deployment
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Pull Code -- digital ocean
+      run: |
+        ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no root@68.183.93.40 "cd Student-Central && git pull origin deployment"
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
