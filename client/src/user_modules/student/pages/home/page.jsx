@@ -12,10 +12,14 @@ const page = () => {
         <div className="student-home-in-one">
           <div className="student-home-in-one-in">
 <<<<<<< HEAD
+<<<<<<< HEAD
             <h1>Dear, {auth?.user}</h1>
 =======
             <h1>Welcome, {auth.user}</h1>
 >>>>>>> main
+=======
+            <h1>Dear, {auth?.user}</h1>
+>>>>>>> 667a4b0 (undefined updated)
             <h1>Welcome to Student Activity Center Student Portal</h1>
             <p>This enterprise is an application designed to function as a unified platform for addressing various grievances of students. The portal has been developed by ZeroOne Code Club and is currently maintained by first-year students associated with the club.</p>
           </div>

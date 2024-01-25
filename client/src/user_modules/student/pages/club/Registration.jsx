@@ -174,8 +174,12 @@ const handleSubmit = (clubId, Domain) => {
                     </div>
                 </div>
         <div className="ClubList">
+<<<<<<< HEAD
           {Array.isArray(clubData) &&
   	clubData
+=======
+          {clubData
+>>>>>>> 667a4b0 (undefined updated)
             .filter((club) => !selectedDomain || club?.club_domain === selectedDomain)
             .map((club) => (
                 <div key={club.id} className="clubregistration-two">
@@ -210,10 +214,14 @@ const handleSubmit = (clubId, Domain) => {
                                     <div className="clubregistration-two-in-card-two-in-four">
                                         <div className="clubregistration-two-in-card-two-in-four-in">
 <<<<<<< HEAD
+<<<<<<< HEAD
                                         <button onClick={() => handleSubmit(club?.id)}>Submit Application</button>
 =======
                                         <button onClick={() => handleSubmit(club.id, club.club_domain)}>Submit Application</button>
 >>>>>>> main
+=======
+                                        <button onClick={() => handleSubmit(club?.id)}>Submit Application</button>
+>>>>>>> 667a4b0 (undefined updated)
                                         </div>
                                     </div>
 
