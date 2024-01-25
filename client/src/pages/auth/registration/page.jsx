@@ -285,8 +285,6 @@ const Registration = () => {
                             <Link className='register-card-in-one-five-link' to='/auth/login' >Login instead</Link>
                         </div>
                             <ToastContainer />
-
-
                     </div>
                     <div className="register-card-in-two">
                         <div className="register-card-in-two-in">

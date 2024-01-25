@@ -14,8 +14,6 @@ const handleLogIn = async (req, res) => {
 
     try {
 
-
-
         // get first two characters of username
         let getyear = parseInt(username.slice(0, 2));
         const presentyear = getyear + 2000;

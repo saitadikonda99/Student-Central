@@ -1,0 +1,55 @@
+.LogOutComponent {
+    font-family: 'Arial', sans-serif;
+    width: 80%;
+    margin: auto;
+}
+
+.LogOutComponent input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.LogOutComponent-in {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+}
+
+.LogOutComponent-in-one {
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    border-radius: 8px;
+}
+
+.LogOutComponent-in-one-one h3 {
+    margin: 0;
+    font-size: 20px;
+    color: #333;
+}
+
+.LogOutComponent-in-one-one p {
+    margin: 8px 0;
+    font-size: 16px;
+    color: #666;
+}
+
+.LogOutComponent-in-one-two button {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.LogOutComponent-in-one-two button:hover {
+    background-color: #2980b9;
+}

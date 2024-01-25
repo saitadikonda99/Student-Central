@@ -66,7 +66,7 @@ function Login() {
             });
 
         } catch (error) { 
-            toast.error('Login Failed')
+            toast.error('error.message')
         } finally {
             setLoading(false);
         }
