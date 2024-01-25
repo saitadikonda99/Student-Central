@@ -10,8 +10,13 @@ lerna-debug.log*
 */vite.config.ts
 
 
-
 client/vite.config.ts
+
+vite.config.ts
+
+*/vite.config.ts
+*/vite.config.ts/*
+*/vite.config.ts/**/*
 
 # ignore all the .env files 
 .env*
