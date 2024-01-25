@@ -282,17 +282,9 @@ const Registration = () => {
 
                         <div className="register-card-in-one-five">
                             <button className='register-card-in-one-five-button' onClick={handleSubmit}>Register</button>
-                            <ToastContainer />
                             <Link className='register-card-in-one-five-link' to='/auth/login' >Login instead</Link>
                         </div>
-
-
-
-
-                       
-
-
-
+                            <ToastContainer />
                     </div>
                     <div className="register-card-in-two">
                         <div className="register-card-in-two-in">

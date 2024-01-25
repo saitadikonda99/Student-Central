@@ -5,7 +5,8 @@ require('dotenv').config()
 
 const IP_ADDRESS = process.env.IP_ADDRESS;
 const app = express()
-const PORT = 8891
+
+const PORT = process.env.PORT || 8891
 
 // imports start here
 
@@ -28,6 +29,9 @@ const viewUserReg = require('./routes/registration/viewUserReg.Route')
 const getClubs = require('./routes/clubs/getClubs.Route')
 const viewProfile = require('./routes/profile/profile.Route')
 const Admin = require('./routes/admin/admin.Route')   
+const LogIn = require('./routes/log/logIn.Route')
+const LogOut = require('./routes/log/logOut.Route')
+const LogData = require('./routes/log/getLogData.Route')
 
 
 // cors 
@@ -55,6 +59,10 @@ app.use('/viewUserReg', viewUserReg)
 app.use('/getClubs', getClubs)
 app.use('/viewProfile', verifyJWT, viewProfile)
 app.use('/admin', Admin)
+
+app.use('/logInSheet', LogIn)
+app.use('/logOutSheet', LogOut)
+app.use('/logData', LogData)
 
 
 app.get('/', (req, res) => {

@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS users (
     id INT(11) NOT NULL AUTO_INCREMENT,
     username VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
+    is_verified INT(11) NOT NULL DEFAULT 0,
     role VARCHAR(255) NOT NULL DEFAULT 'Student',
     refresh_token VARCHAR(255) DEFAULT NULL,   
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -39,9 +40,10 @@ CREATE TABLE IF NOT EXISTS user_details (
 -- Create a table named club_reg
 CREATE TABLE IF NOT EXISTS club_reg (
     id INT(11) NOT NULL AUTO_INCREMENT,
-    user_id INT(11) NOT NULL UNIQUE,
-    club_id INT(11) NOT NULL,
+    user_id INT(11),
+    club_id INT(11) NOT NULL UNIQUE,
     why TEXT NOT NULL,
+    club_domain VARCHAR(255) NOT NULL,
     resume_link VARCHAR(255) NOT NULL,
     preknowledge VARCHAR(255) NOT NULL,
     acceptance VARCHAR(255) DEFAULT 'Pending',
@@ -65,4 +67,17 @@ CREATE TABLE IF NOT EXISTS club (
     club_desc LONGTEXT NOT NULL, -- Change data type to LONGTEXT
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
+);
+
+
+-- log the data 
+
+CREATE TABLE IF NOT EXISTS logs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    year INT NOT NULL,
+    branch VARCHAR(255) NOT NULL,
+    purpose VARCHAR(255) NOT NULL,
+    login_time DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    logout_time DATETIME
 );

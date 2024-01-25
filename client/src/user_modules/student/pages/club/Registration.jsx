@@ -45,43 +45,9 @@ const Registration = () => {
     fetchClub();
   }, []);
 
-  const handleClubRegCheck = (clubId) => {
-    window.confirm('Are you sure you want to join this club?') && handleClubReg(clubId);
-  };
-
-  const handleClubReg = async (clubId) => {
-    try {
-      console.log('clubId:', clubId);
-      setLoader(true);
-
-      const response = await axios.post(
-        `${host}/clubReg`,
-        JSON.stringify({ userId, clubId }),
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          withCredentials: true,
-        }
-      );
-
-      if (response.data?.message == 'Already Registered to a Club') {
-        toast.warn('Already Registered to a Club');
-      }
-
-      if (response.data?.message === 'Registered Successfully') {
-        toast.success('Registered Successfully');
-      }
-
-      console.log('response:', response.data.message);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoader(false);
-    }
-  };
-
+ 
 const [activeButton, setActiveButton] = useState('TEC');
+
 
   
 
@@ -91,14 +57,14 @@ const [activeButton, setActiveButton] = useState('TEC');
   };
 
   const [selectedClubId, setSelectedClubId] = useState(null);
+  const [selectedRegDomain, setSelectedRegDomain] = useState(null);
 
 
-  
-
-const handleSubmit = (clubId) => {
-  handleClickOpen();
-  setSelectedClubId(clubId);
-  window.confirm('Are you sure you want to join this club?');
+const handleSubmit = (clubId, Domain) => {
+    window.confirm('Are you sure you want to join this club?');
+    handleClickOpen();
+    setSelectedClubId(clubId);
+    setSelectedRegDomain(Domain);
 }
 
   const [open, setOpen] = React.useState(false);
@@ -119,10 +85,11 @@ const handleSubmit = (clubId) => {
   const handleConfirmClick = async () => {
     try {
       const { why, resumeLink, preknowledge } = formData;
+
       setLoader(true);
     const response = await axios.post(
       `${host}/clubReg`,
-      JSON.stringify({ userId, clubId: selectedClubId, why, resumeLink, preknowledge }),
+      JSON.stringify({ userId, clubId: selectedClubId, domain: selectedRegDomain, why, resumeLink, preknowledge }),
       {
         headers: {
           'Content-Type': 'application/json',
@@ -133,17 +100,28 @@ const handleSubmit = (clubId) => {
 
       if (response.data?.message == 'Already Registered to a Club') {
         toast.warn('Already Registered to a Club');
+        return;
       }
 
       if (response.data?.message === 'Registered Successfully') {
         toast.success('Registered Successfully');
+        return;
       }
 
-      console.log('response:', response.data.message);
+      if (response.data?.message === 'Something went wrong!') {
+        toast.warn('Something went wrong!');
+        return;
+      }
+      
+      toast.warn(response.data?.message);
+
+
     } catch (error) {
       console.log(error);
+        toast.error('Something went wrong');
     } finally {
       setLoader(false);
+       
     }
   }
 
@@ -154,7 +132,6 @@ const handleSubmit = (clubId) => {
   const handleClose = () => {
     setOpen(false);
   }
-
 
 
 
@@ -232,9 +209,15 @@ const handleSubmit = (clubId) => {
                                     </div>
                                     <div className="clubregistration-two-in-card-two-in-four">
                                         <div className="clubregistration-two-in-card-two-in-four-in">
+<<<<<<< HEAD
                                         <button onClick={() => handleSubmit(club?.id)}>Submit Application</button>
+=======
+                                        <button onClick={() => handleSubmit(club.id, club.club_domain)}>Submit Application</button>
+>>>>>>> main
                                         </div>
                                     </div>
+
+                                
                                 </div>
                             </div>
                         </div>
@@ -287,8 +270,8 @@ const handleSubmit = (clubId) => {
           <div className="clubregistration-popup-buttons">
             <button onClick={handleCancelClick}>Cancel</button>
             <button onClick={handleConfirmClick} >Confirm</button>
-            < ToastContainer />
           </div>
+            <ToastContainer/>
         </div>
       </div>
     </DialogContent>

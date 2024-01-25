@@ -13,7 +13,6 @@ const authenticate = async (username, password) => {
              [username]
             )
 
-        
         if (userData.length > 0) {
             const hashedPassword = userData[0].password === password
             return hashedPassword ? userData[0] : false

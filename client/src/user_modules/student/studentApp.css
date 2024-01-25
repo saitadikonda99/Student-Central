@@ -4,7 +4,19 @@
 .student-app-in {
     width: 100%;
     display: flex;
-    height: 95vh;
+    height: 90vh;
+    overflow: hidden;
+}
+.openAndCloseButton {
+    background-color: rgb(151, 0, 3);
+    color: white;
+    border: none;
+    font-size: 1rem;
+    padding: 0.5rem;
+    cursor: pointer;
+    outline: none;
+    position: absolute;
+    top: 50%;
 }
 .student-app-topnav {
     background-color: rgb(151, 0, 3);
@@ -12,12 +24,30 @@
 }
 .student-app-one {
     width: 20%;
+    /* transition: width 0.3s ease; */
+}
+.student-app-one.closed {
+    width: 0;
 }
 .student-app-two {
     width: 80%;
     background-color: rgb(255, 165, 0, 0.1);
-    height: 95vh;
+    height: 90vh;
     overflow-y: scroll;
     border: 3px solid lightgrey;
     padding: 1.5rem;
+    /* transition: width 0.3s ease; */
+}
+.student-app-two.expanded {
+    width: 100%;
+}
+.student-app-footer {
+    background-color: rgb(151, 0, 3);
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 1rem;
+    z-index: 1000;
 }
