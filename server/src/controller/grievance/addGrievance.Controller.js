@@ -1,7 +1,6 @@
-const { pool } = require('../../../config/database');
-const { logger } = require('../../../config/winston');
-const { constants } = require('../../../config/constants');
-const { response } = require('express');
+
+const { pool } = require('../../config/db')
+
 
 const handleAddGrievance = async (req, res) => {
     let { user_id, title, description, response, status } = req.body;

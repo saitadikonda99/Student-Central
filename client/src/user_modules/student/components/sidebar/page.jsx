@@ -30,7 +30,7 @@ const page = () => {
                 </div>
                 <div className="sidebar-option">
                     <div className="sidebar-option-in">
-                        <Link className='sidebar-option-in-link' to='/student/viewregistration'>SAC Log Book</Link>
+                        <Link className='sidebar-option-in-link' to='/student/viewlog'>SAC Log Book</Link>
                     </div>
                 </div>
                 <div className="sidebar-option">
