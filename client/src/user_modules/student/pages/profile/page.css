@@ -26,29 +26,50 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-direction: row;
 }
-.profile-page-in-one-in table {
-    width: 100%;
-    
-
-}
-.profile-page-in-one-in-one {
-    display: flex;
-    flex-direction: column;
+.profile-page-in-one-in form {
     width: 60%;
-}
-.profile-page-in-one-in-one td {
-    background-color: white;
-    border-bottom: 1px solid grey;
-    padding: 0.5rem;
     display: flex;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+
 }
 
-.profile-page-in-one-in-one td strong {
+.profile-page-in-one-in-one {
+    width: 100%;
+
+}
+.profile-page-in-one-in-cmn {
+    display: flex;
+    border-bottom: 1px solid white;
+    padding: 0.3rem 0rem;
+}
+.profile-page-in-one-in-cmn-one {
     width: 20%;
 }
-
-.profile-page-in-one-in-one td span {
+.profile-page-in-one-in-cmn-two {
     width: 80%;
+}
+.profile-page-in-one-in-cmn-two p {
+    font-size: 1rem;
+    font-weight: 400;
+}
+.profile-page-in-one-in-cmn-two input {
+    font-size: 0.8rem;
+    font-weight: 400;
+    padding: 0rem 0.3rem;
+}
+.profile-page-in-two {
+    width: 100%;
+    padding: 1rem 0rem;
+}
+.profile-page-in-two button {
+    background-color: black;
+    padding: 0.2rem 1rem;
+    border: 1px solid black;
+    color: white;
+    font-size: 1rem;
+    margin: 0rem 0.1rem;
 }

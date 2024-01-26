@@ -102,7 +102,7 @@ function Login() {
                 <div className="login-card-in">
                     <div className="login-card-in-one">
                         <div className="login-card-in-one-header">
-                            <h1>--Login to get Started</h1>
+                            <h1>Login to get Started</h1>
                             <p>Use your University ID as Username</p>
                         </div>
                         <div className="login-card-in-one-one">
@@ -127,7 +127,7 @@ function Login() {
                                 </div>
                                 <div className="login-card-in-one-one-three">
                                     <button type='submit'>Login</button>
-                                    <Link className='login-card-in-one-one-three-link' to='/auth/register' >Already registered?</Link>
+                                    <Link className='login-card-in-one-one-three-link' to='/auth/register' >Not registered?</Link>
                                     <ToastContainer />
                                 </div>
                             </form>
