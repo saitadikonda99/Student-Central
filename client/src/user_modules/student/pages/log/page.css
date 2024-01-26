@@ -1,0 +1,39 @@
+.logdata {
+    width: 100%;
+}
+.logdata-in {
+    width: 100%;
+}
+.logdata-header {
+    width: 100%;
+}
+.logdata-header-in {
+    width: 100%;
+}
+.logdata-header-in h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #000;
+}
+.logdata-one {
+    width: 100%;
+}
+.logdata-one-in {
+    width: 100%;
+}
+.logdata-one-in table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+.logdata-one-in table tr th {
+    background-color: black;
+    color: white;
+    border: 1px solid grey;
+    padding: 0.1rem;
+}
+
+.logdata-one-in table tr td {
+    border: 1px solid black;
+    padding: 0.3rem;
+}

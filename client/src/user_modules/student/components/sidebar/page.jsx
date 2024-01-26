@@ -35,7 +35,7 @@ const page = () => {
                 </div>
                 <div className="sidebar-option">
                     <div className="sidebar-option-in">
-                        <Link className='sidebar-option-in-link' to='/student/viewregistration'>Greviances</Link>
+                        <Link className='sidebar-option-in-link' to='/student/viewlog'>Greviances</Link>
                     </div>
                 </div>
             </div>

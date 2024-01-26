@@ -6,7 +6,6 @@ const handleLogOut = async (req, res) => {
 
     const { username } = req.body;
 
-    console.log("sasdfgh",username)
 
     const userRegex = /^[0-9]{10}$/;
 
