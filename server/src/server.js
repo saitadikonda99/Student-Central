@@ -33,6 +33,7 @@ const Admin = require('./routes/admin/admin.Route')
 const LogIn = require('./routes/log/logIn.Route')
 const LogOut = require('./routes/log/logOut.Route')
 const LogData = require('./routes/log/getLogData.Route')
+const ViewLogData = require('./routes/log/viewLogData.Route')
 
 
 // cors 
@@ -66,6 +67,7 @@ app.use('/logInSheet', LogIn)
 app.use('/logOutSheet', LogOut)
 app.use('/logData', LogData)
 
+app.use('/viewLogData', ViewLogData )
 
 app.get('/', (req, res) => {
     res.send(`<h1 style="text-align:center">Server running</h1>`);
