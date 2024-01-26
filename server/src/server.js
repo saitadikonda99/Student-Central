@@ -33,6 +33,7 @@ const Admin = require('./routes/admin/admin.Route')
 const LogIn = require('./routes/log/logIn.Route')
 const LogOut = require('./routes/log/logOut.Route')
 const LogData = require('./routes/log/getLogData.Route')
+const AddGrievance = require('./routes/grievance/addGrievance.Route')
 
 
 // cors 
@@ -65,6 +66,9 @@ app.use('/admin', Admin)
 app.use('/logInSheet', LogIn)
 app.use('/logOutSheet', LogOut)
 app.use('/logData', LogData)
+
+app.use('/addGrievance', AddGrievance)
+
 
 
 app.get('/', (req, res) => {
