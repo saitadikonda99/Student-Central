@@ -4,8 +4,13 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+<<<<<<< HEAD
     "dev": "vite --port 3000",
     "start": "vite --port 3000",
+=======
+    "dev": "vite --port 80",
+    "start": "vite --port 80",
+>>>>>>> 19421bd (undefined updated again)
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
