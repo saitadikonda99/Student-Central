@@ -128,8 +128,8 @@ function Login() {
                                 <div className="login-card-in-one-one-three">
                                     <button type='submit'>Login</button>
                                     <Link className='login-card-in-one-one-three-link' to='/auth/register' >Not registered?</Link>
-                                    <ToastContainer />
                                 </div>
+                                    <ToastContainer />
                             </form>
                         </div>
                     </div>
