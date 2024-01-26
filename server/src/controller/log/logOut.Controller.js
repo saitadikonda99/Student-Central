@@ -1,9 +1,12 @@
 const { pool } = require("../../config/db");
+const cron = require("node-cron");
 
 
 const handleLogOut = async (req, res) => {
 
     const { username } = req.body;
+
+    console.log("sasdfgh",username)
 
     const userRegex = /^[0-9]{10}$/;
 
@@ -42,22 +45,17 @@ const handleLogOut = async (req, res) => {
 
 }
 
-setInterval(async () => {
+// Schedule automatic logout every day at midnight
+cron.schedule("0 0 * * *", async () => {
     try {
-        const oneDayAgo = new Date();
-        oneDayAgo.setDate(oneDayAgo.getDate() - 1);
-
         const response = await pool.query(
-            `
-            UPDATE logs
-            SET logout_time = CURRENT_TIMESTAMP
-            WHERE logout_time IS NULL`,
-            [oneDayAgo]
+            `UPDATE logs SET logout_time = NOW() WHERE logout_time IS NULL`
         );
+        console.log('Automatic logout for users at midnight:', response);
     } catch (error) {
-        console.log('Auto logout task failed:', error);
+        console.log('Error during automatic logout:', error);
     }
-}, 24 * 60 * 60 * 1000);
+});
 
 
 module.exports = {

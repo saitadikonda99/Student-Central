@@ -17,6 +17,7 @@ import ViewReg from './user_modules/student/pages/club/ViewReg';
 import StudentApp from './user_modules/student/studentApp';
 import AdminApp from './user_modules/admin/adminApp';
 import Layout from './components/auth/Layout';
+import LogApp from './public/publicApp'
 
 
 function App() {
@@ -63,6 +64,11 @@ function App() {
                   <Route path='/' element={<Login/>}/>
                   <Route path='/auth/login' element={<Login/>}/>
                   <Route path='/auth/register' element={<Register/>}/>
+
+                {/* public routes */}
+
+                  <Route path='/public/*' element={<LogApp/>}/>
+
               </Route>
             </Route>
         </Routes>

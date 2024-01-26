@@ -40,9 +40,10 @@ CREATE TABLE IF NOT EXISTS user_details (
 -- Create a table named club_reg
 CREATE TABLE IF NOT EXISTS club_reg (
     id INT(11) NOT NULL AUTO_INCREMENT,
-    user_id INT(11) NOT NULL,
-    club_id INT(11) NOT NULL,
+    user_id INT(11),
+    club_id INT(11) NOT NULL UNIQUE,
     why TEXT NOT NULL,
+    club_domain VARCHAR(255) NOT NULL,
     resume_link VARCHAR(255) NOT NULL,
     preknowledge VARCHAR(255) NOT NULL,
     acceptance VARCHAR(255) DEFAULT 'Pending',
