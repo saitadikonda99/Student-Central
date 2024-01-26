@@ -174,8 +174,10 @@ const handleSubmit = (clubId, Domain) => {
                     </div>
                 </div>
         <div className="ClubList">
+
           {clubData
             .filter((club) => !selectedDomain || club.club_domain === selectedDomain)
+
             .map((club) => (
                 <div key={club.id} className="clubregistration-two">
                     <div className="clubregistration-two-in">
